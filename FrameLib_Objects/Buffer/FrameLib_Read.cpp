@@ -76,7 +76,9 @@ FrameLib_Read::ParameterInfo FrameLib_Read::sParamInfo;
 FrameLib_Read::ParameterInfo::ParameterInfo()
 {
     add("Sets the buffer to use.");
-    add("Sets the buffer channel to use.");
+    add("Sets the buffer channel to use: "
+        "Channels start from zero. "
+        "However, if set to minus one then the channel will match the stream id.");
     add("Sets the units used for interpreting the input. "
         "Note that the edge parameter is also accounted for normalised mode. "
         "This adjusts the scaling to work sensibly with cyclical modes.");
