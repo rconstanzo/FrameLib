@@ -638,7 +638,7 @@
         },
         "2": {
             "name": "2. /channel [int]",
-            "description": "Sets the buffer channel to use."
+            "description": "Sets the buffer channel to use:"
         },
         "3": {
             "name": "3. /units [enum]",
