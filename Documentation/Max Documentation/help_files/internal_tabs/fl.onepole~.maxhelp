@@ -779,7 +779,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1361,7 +1361,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1496,7 +1496,7 @@
 										}
 ,
 										"classnamespace" : "box",
-										"rect" : [ 657.0, 253.0, 453.0, 480.0 ],
+										"rect" : [ 657.0, 253.0, 211.0, 480.0 ],
 										"bglocked" : 0,
 										"openinpresentation" : 1,
 										"default_fontsize" : 12.0,
@@ -1596,7 +1596,7 @@
 													"maxclass" : "outlet",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 14.0, 379.0, 30.0, 30.0 ]
+													"patching_rect" : [ 55.5, 379.0, 30.0, 30.0 ]
 												}
 
 											}
@@ -1607,7 +1607,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 14.0, 326.0, 55.0, 22.0 ],
+													"patching_rect" : [ 55.5, 326.0, 55.0, 22.0 ],
 													"text" : "mode $1"
 												}
 
@@ -1627,7 +1627,7 @@
 													"presentation_rect" : [ 14.0, 14.0, 102.0, 171.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
-															"parameter_enum" : [ "lpf", "hpf" ],
+															"parameter_enum" : [ "lowpass", "highpass" ],
 															"parameter_longname" : "live.tab",
 															"parameter_mmax" : 1,
 															"parameter_shortname" : "live.tab",
@@ -1645,7 +1645,7 @@
 										"lines" : [ 											{
 												"patchline" : 												{
 													"destination" : [ "obj-3", 0 ],
-													"source" : [ "obj-1", 0 ]
+													"source" : [ "obj-1", 1 ]
 												}
 
 											}
