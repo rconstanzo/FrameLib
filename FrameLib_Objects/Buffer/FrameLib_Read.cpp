@@ -5,8 +5,8 @@
 
 FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
-, mStream(0)
 , mProxy(cloneProxy<Proxy>(proxy))
+, mStream(0)
 {
     mParameters.addString(kBuffer, "buffer", 0);
     
