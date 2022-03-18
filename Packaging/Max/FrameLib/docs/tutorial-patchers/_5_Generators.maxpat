@@ -239,7 +239,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 177.0, 499.0, 161.0, 50.0 ],
-									"text" : "0.62 0.62 0.62 0.62 0.62 0.62 0.62 0.62 0.62 0.62 0.62 0.62 0.62 0.62"
+									"text" : "0.50 0.50 0.50 0.50 0.50 0.50 0.50 0.50 0.50 0.50 0.50 0.50 0.50 0.50"
 								}
 
 							}
@@ -1205,7 +1205,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 843.0, 707.0 ],
+						"rect" : [ 34.0, 113.0, 843.0, 707.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1258,7 +1258,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 542.0, 249.0, 38.25, 15.0 ]
+									"patching_rect" : [ 549.0, 249.0, 38.25, 15.0 ]
 								}
 
 							}
@@ -1270,7 +1270,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 582.25, 245.0, 242.75, 137.0 ],
+									"patching_rect" : [ 592.0, 245.0, 242.75, 137.0 ],
 									"text" : "Change the between requested and input of the right most fl.random~ object.\n\nIn requested mode, the object uses its stored /length parameter as the output length. Input mode allows it to spy on the length of the trigger frame, and configure the length of the output frame to match this."
 								}
 
@@ -1284,7 +1284,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 472.0, 191.0, 38.25, 15.0 ]
+									"patching_rect" : [ 564.0, 191.0, 38.25, 15.0 ]
 								}
 
 							}
@@ -1295,8 +1295,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 510.0, 187.0, 254.0, 21.0 ],
-									"text" : "Output the requested length of 5 samples."
+									"patching_rect" : [ 605.25, 188.0, 229.0, 21.0 ],
+									"text" : "Output requested length of 5 samples."
 								}
 
 							}
@@ -1326,7 +1326,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 464.0, 245.0, 76.0, 23.0 ],
+									"patching_rect" : [ 469.0, 245.0, 76.0, 23.0 ],
 									"text" : "mode input"
 								}
 
@@ -1389,7 +1389,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 334.0, 187.0, 33.0, 21.0 ],
+									"patching_rect" : [ 330.0, 187.0, 33.0, 21.0 ],
 									"text" : "==",
 									"textjustification" : 1
 								}
@@ -1403,8 +1403,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 367.0, 187.0, 103.0, 23.0 ],
-									"text" : "fl.random~ 0 5 0"
+									"patching_rect" : [ 362.0, 187.0, 195.0, 23.0 ],
+									"text" : "fl.random~ requested 5 samples"
 								}
 
 							}
@@ -1567,7 +1567,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-20", 0 ],
-									"midpoints" : [ 473.5, 299.0, 366.5, 299.0 ],
+									"midpoints" : [ 478.5, 299.0, 366.5, 299.0 ],
 									"source" : [ "obj-24", 0 ]
 								}
 
@@ -1674,7 +1674,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 843.0, 707.0 ],
+						"rect" : [ 0.0, 26.0, 843.0, 707.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
