@@ -15,10 +15,11 @@ def indent(elem, level=0):
             elem.text = i + "  "
         if not elem.tail or not elem.tail.strip():
             elem.tail = i
-        for elem in elem:
-            indent(elem, level + 1)
-        if not elem.tail or not elem.tail.strip():
-            elem.tail = i
+        if elem.tag != "description":
+            for child_elem in elem:
+                indent(child_elem, level + 1)
+        if not elem[len(elem) - 1].tail or not elem[len(elem) - 1].tail.strip():
+            elem[len(elem) - 1].tail = i
     else:
         if level and not elem.tail or not elem.tail.strip():
             elem.tail = i
@@ -48,6 +49,7 @@ def main(docs):
                     return key
 
     raw_xml_list = [x for x in docs.raw_xml_dir.rglob("fl.*.xml")]
+    manual_xml_list = [x for x in docs.manual_xml_dir.rglob("fl.*.xml")]
     print(f"Found {len(raw_xml_list)} .xml files to process.")
     docs.refpages_dir.mkdir(exist_ok=True)
 
@@ -92,7 +94,7 @@ def main(docs):
                     for sub_elem in elem:
                         if sub_elem.tag == "entry" and sub_elem.attrib["name"] == "Keywords":
                             for desc in sub_elem:
-                                temp_string = ",".join(details["keywords"])
+                                temp_string = ", ".join(details["keywords"])
                                 desc.text = temp_string
         # Pretty Print
         indent(root)
@@ -105,10 +107,12 @@ def main(docs):
         tree.write(unescaped_file)
 
         docs.refpages_dir.mkdir(exist_ok=True)
-        refpages_parent = docs.refpages_dir / category
+        refpages_parent = docs.refpages_dir / "framelib-ref"
         refpages_parent.mkdir(exist_ok=True)
-        final_path = docs.refpages_dir / category / raw_xml.name
+        final_path = docs.refpages_dir / "framelib-ref" / raw_xml.name
         final_file = open(final_path, "w+")
+        final_file.write("<?xml version='1.0' encoding='utf-8' standalone='yes'?>\n")
+        final_file.write("<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>\n")
         with open(unescaped_file, "r") as f:
             xml = f.read()
             xml = xml.replace("&lt;br&gt;", "<br/>")
@@ -116,6 +120,16 @@ def main(docs):
                 final_file.write(line)
             final_file.close()
 
+    for manual_xml in manual_xml_list:
+        refpages_parent = docs.refpages_dir / "framelib-ref"
+        refpages_parent.mkdir(exist_ok=True)
+        final_path = refpages_parent / manual_xml.name
+        final_file = open(final_path, "w+")
+        with open(manual_xml, "r") as f:
+            xml = f.read()
+            for line in xml:
+                final_file.write(line)
+            final_file.close()
 
 if __name__ == "__main__":
     main(Documentation())

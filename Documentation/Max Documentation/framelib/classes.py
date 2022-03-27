@@ -32,7 +32,10 @@ class Documentation:
 
         # Help Files
         self.help_dir = self.max_docs_dir / "help_files"
-    
+
+        # Manual XML
+        self.manual_xml_dir = self.max_docs_dir / "refpages"
+
     def set_package(self, location:str) -> None:
         """Sets the location of the folder holding that is the parent of the package"""
         self.package = Path(location)
@@ -152,7 +155,7 @@ class qParseAndBuild:
 # A class to parse the XML files and build a JSON file from it #
 class tParseAndBuild:
     """
-    Takes info from the tutorial refpages /FrameLib/Current Test Version/FrameLib/docs/tutorials/FrameLib-tut/.
+    Takes info from the tutorial refpages FrameLib/docs/tutorials/framelib-tut/.
     Extracts the title, number and formats it into a .json.
     """
 
@@ -231,13 +234,18 @@ class jParseAndBuild:
 
                             blank_desc = strip_space(description.text)
 
-                            for bullet in description:  # if there are any bullet points
-                                if bullet.text != None:  # and its not none
-                                    # if it is the first line it will be the title 'Parameter Options'
-                                    if bullet.text[1] == "0":
-                                        blank_desc += f"\n\nParameter Options:"
+                            for item in description:  # if there are any bullet points
+                                if item.tag == "bullet":
+                                    if item.text != None:  # and its not none
+                                        # if it is the first line it will be the title 'Parameter Options'
+                                        if item.text[1] == "0":
+                                            blank_desc += f"\n\nParameter Options:"
 
-                                    blank_desc += f"\n{bullet.text}"
+                                        blank_desc += f"\n{item.text}"
+                                elif item.tag == "o":
+                                    blank_desc += item.text
+                                    blank_desc += item.tail.rstrip()
+
                         blank_desc = self.param_newlines(blank_desc)
                         blank_internal["description"] = blank_desc  # set the description
 

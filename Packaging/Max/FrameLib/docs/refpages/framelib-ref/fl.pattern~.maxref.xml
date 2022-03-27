@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
+<c74object name="fl.pattern~" module="FrameLib" category="FrameLib Vector">
+  <digest>
+    Step through a frame of values (or pattern) one at a time
+  </digest>
+  <description>
+    The pattern input takes the pattern frame without triggering output. Triggers step through the pattern either forwards or backwards. The pattern can be run (once), looped, paused or stopped. Triggers at the reset input set the position in the pattern using the reset parameter. The position is also reset whenever a new pattern is received.
+  </description>
+  <misc name="Parameters">
+    <entry name="/mode [enum]">
+      <description>
+        Sets the mode:<br/><br/>run - the pattern progresses until it hits the final value.<br/>loop - the pattern loops.<br/>pause - the pattern is paused until the mode is changed.<br/>stop - the pattern returns to the reset position until the mode is changed.<br />
+        <bullet>[0] - run</bullet>
+        <bullet>[1] - loop</bullet>
+        <bullet>[2] - pause</bullet>
+        <bullet>[3] - stop</bullet>
+      </description>
+    </entry>
+    <entry name="/direction [enum]">
+      <description>
+        Sets the direction of progress.<br />
+        <bullet>[0] - forward</bullet>
+        <bullet>[1] - backward</bullet>
+      </description>
+    </entry>
+    <entry name="/reset [int]">
+      <description>
+        Sets the reset position as a sample index.<br/>A value of -1 can be used for direction independent reset.<br/>For forward direction reading this results in a reset to the first position.<br/>For backward direction reading this results in a reset to the last position.
+      </description>
+    </entry>
+    <entry name="/idle [enum]">
+      <description>
+        Sets the idle output (the output when stopped, paused or out of bounds):<br/><br/>repeat - repeat the current value.<br/>empty - output an empty frame.<br />
+        <bullet>[0] - repeat</bullet>
+        <bullet>[1] - empty</bullet>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Vector</metadata>
+  </metadatalist>
+  <objarglist>
+    <objarg name="mode" optional="1" type="symbol">
+      <digest>
+        Sets the mode
+      </digest>
+      <description>
+        This argument sets the mode parameter:<br /><br />Sets the mode:<br /><br />run - the pattern progresses until it hits the final value.<br />loop - the pattern loops.<br />pause - the pattern is paused until the mode is changed.<br />stop - the pattern returns to the reset position until the mode is changed.
+      </description>
+    </objarg>
+    <objarg name="direction" optional="1" type="symbol">
+      <digest>
+        Sets the direction of progress
+      </digest>
+      <description>
+        This argument sets the direction parameter:<br /><br />Sets the direction of progress.
+      </description>
+    </objarg>
+    <objarg name="reset" optional="1" type="int">
+      <digest>
+        Sets the reset position as a sample index
+      </digest>
+      <description>
+        This argument sets the reset parameter:<br /><br />Sets the reset position as a sample index.<br />A value of -1 can be used for direction independent reset.<br />For forward direction reading this results in a reset to the first position.<br />For backward direction reading this results in a reset to the last position.
+      </description>
+    </objarg>
+    <objarg name="idle" optional="1" type="symbol">
+      <digest>
+        Sets the idle output (the output when stopped, paused or out of bounds)
+      </digest>
+      <description>
+        This argument sets the idle parameter:<br /><br />Sets the idle output (the output when stopped, paused or out of bounds):<br /><br />repeat - repeat the current value.<br />empty - output an empty frame.
+      </description>
+    </objarg>
+  </objarglist>
+  <methodlist>
+    <method name="info">
+      <arglist>
+        <arg name="items" optional="1" type="list" />
+      </arglist>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        Print info about <o>fl.pattern~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+      </description>
+    </method>
+    <method name="frame">
+      <arglist />
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+    <method name="sync">
+      <arglist />
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+  </methodlist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for <o>fl.pattern~</o>. When set to <m>0</m> <o>fl.pattern~</o> can form part of a non-realtime network for processing in message threads, using <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for <o>fl.pattern~</o>.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
+  <seealsolist>
+    <seealso name="fl.minpos~" />
+    <seealso name="fl.percentile~" />
+    <seealso name="fl.stddev~" />
+    <seealso name="fl.centroid~" />
+    <seealso name="fl.accumpos~" />
+    <seealso name="fl.nonzero~" />
+    <seealso name="fl.maxpos~" />
+    <seealso name="fl.geomean~" />
+    <seealso name="fl.spread~" />
+    <seealso name="fl.framemax~" />
+    <seealso name="fl.kurtosis~" />
+    <seealso name="fl.sort~" />
+    <seealso name="fl.mean~" />
+    <seealso name="fl.join~" />
+    <seealso name="fl.shift~" />
+    <seealso name="fl.framemin~" />
+    <seealso name="fl.sum~" />
+    <seealso name="fl.subframe~" />
+    <seealso name="fl.nanfilter~" />
+    <seealso name="fl.reverse~" />
+    <seealso name="fl.length~" />
+    <seealso name="fl.peaks~" />
+    <seealso name="fl.product~" />
+    <seealso name="fl.skewness~" />
+    <seealso name="fl.crest~" />
+    <seealso name="fl.pad~" />
+    <seealso name="fl.chop~" />
+    <seealso name="fl.flatness~" />
+    <seealso name="fl.rms~" />
+    <seealso name="fl.split~" />
+    <seealso name="fl.medianfilter~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>vector</description>
+    </entry>
+  </misc>
+</c74object>
