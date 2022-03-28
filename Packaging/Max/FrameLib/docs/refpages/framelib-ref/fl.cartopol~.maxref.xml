@@ -10,16 +10,12 @@
   <misc name="Parameters">
     <entry name="/dimensions [instantiation enum]">
       <description>
-        Sets the number of dimensions (and hence inputs and outputs).<br />
-        <bullet>[0] - 2D</bullet>
-        <bullet>[1] - 3D</bullet>
+        Sets the number of dimensions (and hence inputs and outputs).<br /><bullet>[0] - <m>2D</m></bullet><bullet>[1] - <m>3D</m></bullet>
       </description>
     </entry>
     <entry name="/angles [instantiation enum]">
       <description>
-        Sets the units used for angles.<br />
-        <bullet>[0] - radians</bullet>
-        <bullet>[1] - degrees</bullet>
+        Sets the units used for angles.<br /><bullet>[0] - <m>radians</m></bullet><bullet>[1] - <m>degrees</m></bullet>
       </description>
     </entry>
   </misc>
@@ -34,7 +30,7 @@
         Sets the number of dimensions (and hence inputs and outputs)
       </digest>
       <description>
-        This argument sets the dimensions parameter:<br /><br />Sets the number of dimensions (and hence inputs and outputs).
+        This argument sets the dimensions parameter:<br /><br />Sets the number of dimensions (and hence inputs and outputs).<br /><bullet>[0] - <m>2D</m></bullet><bullet>[1] - <m>3D</m></bullet>
       </description>
     </objarg>
     <objarg name="angles" optional="1" type="symbol">
@@ -42,7 +38,7 @@
         Sets the units used for angles
       </digest>
       <description>
-        This argument sets the angles parameter:<br /><br />Sets the units used for angles.
+        This argument sets the angles parameter:<br /><br />Sets the units used for angles.<br /><bullet>[0] - <m>radians</m></bullet><bullet>[1] - <m>degrees</m></bullet>
       </description>
     </objarg>
   </objarglist>
@@ -55,7 +51,7 @@
         Get Object Info
       </digest>
       <description>
-        Print info about <o>fl.cartopol~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+        Print info about <o>fl.cartopol~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">

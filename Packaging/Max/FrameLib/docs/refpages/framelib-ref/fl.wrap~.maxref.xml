@@ -10,10 +10,7 @@
   <misc name="Parameters">
     <entry name="/mismatch [instantiation enum]">
       <description>
-        Sets the mode used when dealing with mismatched input lengths:<br/><br/>wrap - smaller right inputs are read modulo against larger left input.<br/>shrink - the output length is set to the length of the smaller input.<br/>extend - smaller right inputs are extended by repeating their final value.<br />
-        <bullet>[0] - wrap</bullet>
-        <bullet>[1] - shrink</bullet>
-        <bullet>[2] - extend</bullet>
+        Sets the mode used when dealing with mismatched input lengths:<br /><bullet>[0] - <m>wrap</m> - smaller right inputs are read modulo against larger left input.</bullet><bullet>[1] - <m>shrink</m> - the output length is set to the length of the smaller input.</bullet><bullet>[2] - <m>extend</m> - smaller right inputs are extended by repeating their final value.</bullet>
       </description>
     </entry>
   </misc>
@@ -49,7 +46,7 @@
         Get Object Info
       </digest>
       <description>
-        Print info about <o>fl.wrap~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+        Print info about <o>fl.wrap~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">

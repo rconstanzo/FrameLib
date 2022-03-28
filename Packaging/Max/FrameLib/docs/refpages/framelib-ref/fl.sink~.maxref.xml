@@ -15,10 +15,7 @@
     </entry>
     <entry name="/units [instantiation enum]">
       <description>
-        Sets the time units used to determine the buffer size and delay.<br />
-        <bullet>[0] - samples</bullet>
-        <bullet>[1] - ms</bullet>
-        <bullet>[2] - seconds</bullet>
+        Sets the time units used to determine the buffer size and delay.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet>
       </description>
     </entry>
     <entry name="/delay [double]">
@@ -28,12 +25,7 @@
     </entry>
     <entry name="/interp [enum]">
       <description>
-        Sets the interpolation mode:<br/><br/>none - no interpolation.<br/>linear - linear interpolation.<br/>hermite - cubic hermite interpolation (incurs a minimum delay or latency of one sample).<br/>bspline - cubic bspline interpolation (incurs a minimum delay or latency of one sample).<br/>lagrange - cubic lagrange interpolation (incurs a minimum delay or latency of one sample).<br />
-        <bullet>[0] - none</bullet>
-        <bullet>[1] - linear</bullet>
-        <bullet>[2] - hermite</bullet>
-        <bullet>[3] - bspline</bullet>
-        <bullet>[4] - lagrange</bullet>
+        Sets the interpolation mode:<br /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation (incurs a minimum delay or latency of one sample).</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation (incurs a minimum delay or latency of one sample).</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation (incurs a minimum delay or latency of one sample).</bullet>
       </description>
     </entry>
   </misc>
@@ -56,7 +48,7 @@
         Sets the time units used to determine the buffer size and delay
       </digest>
       <description>
-        This argument sets the units parameter:<br /><br />Sets the time units used to determine the buffer size and delay.
+        This argument sets the units parameter:<br /><br />Sets the time units used to determine the buffer size and delay.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet>
       </description>
     </objarg>
   </objarglist>
@@ -69,7 +61,7 @@
         Get Object Info
       </digest>
       <description>
-        Print info about <o>fl.sink~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+        Print info about <o>fl.sink~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="process">

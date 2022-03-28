@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/max_frames [int]">
       <description>
-        Sets the maximum number of frames for calculation.<br/>Note that the internal buffer is reset when this changes.
+        Sets the maximum number of frames for calculation. Note that the internal buffer is reset when this changes.
       </description>
     </entry>
     <entry name="/num_frames [int]">
@@ -25,9 +25,7 @@
     </entry>
     <entry name="/start [enum]">
       <description>
-        Sets the behaviour when there are insufficient frames stored (as after a reset):<br/><br/>pad - pad the calculation with default values to account for the missing frames.<br/>shorten - calculate on all frames received since the reset.<br/>Note that frames at the reset input set the frame use for padding.<br/>If the frame is too short or empty it is padded with the pad parameter.<br />
-        <bullet>[0] - pad</bullet>
-        <bullet>[1] - shorten</bullet>
+        Sets the behaviour when there are insufficient frames stored (as after a reset):<br /><bullet>[0] - <m>pad</m> - pad the calculation with default values to account for the missing frames.</bullet><bullet>[1] - <m>shorten</m> - calculate on all frames received since the reset.</bullet><br />Note that frames at the reset input set the frame used for padding. If the frame is too short or empty it is padded with the pad parameter.
       </description>
     </entry>
   </misc>
@@ -42,7 +40,7 @@
         Sets the maximum number of frames for calculation
       </digest>
       <description>
-        This argument sets the max_frames parameter:<br /><br />Sets the maximum number of frames for calculation.<br />Note that the internal buffer is reset when this changes.
+        This argument sets the max_frames parameter:<br /><br />Sets the maximum number of frames for calculation. Note that the internal buffer is reset when this changes.
       </description>
     </objarg>
     <objarg name="num_frames" optional="1" type="int">
@@ -71,7 +69,7 @@
         Get Object Info
       </digest>
       <description>
-        Print info about <o>fl.timestddev~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+        Print info about <o>fl.timestddev~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">

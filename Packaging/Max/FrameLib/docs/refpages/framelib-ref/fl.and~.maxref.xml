@@ -10,19 +10,12 @@
   <misc name="Parameters">
     <entry name="/mismatch [instantiation enum]">
       <description>
-        Sets the mode used when dealing with mismatched input lengths:<br/><br/>wrap - the smaller input is read modulo against the larger input.<br/>shrink - the output length is set to that of the smaller input.<br/>pad_in - the smaller input is padded prior to calculation to match the larger input.<br/>pad_out - the output is padded to match the length of the larger input.<br />
-        <bullet>[0] - wrap</bullet>
-        <bullet>[1] - shrink</bullet>
-        <bullet>[2] - pad_in</bullet>
-        <bullet>[3] - pad_out</bullet>
+        Sets the mode used when dealing with mismatched input lengths:<br /><bullet>[0] - <m>wrap</m> - the smaller input is read modulo against the larger input.</bullet><bullet>[1] - <m>shrink</m> - the output length is set to that of the smaller input.</bullet><bullet>[2] - <m>pad_in</m> - the smaller input is padded prior to calculation to match the larger input.</bullet><bullet>[3] - <m>pad_out</m> - the output is padded to match the length of the larger input.</bullet>
       </description>
     </entry>
     <entry name="/trigger_ins [instantiation enum]">
       <description>
-        Sets which inputs trigger output.<br />
-        <bullet>[0] - both</bullet>
-        <bullet>[1] - left</bullet>
-        <bullet>[2] - right</bullet>
+        Sets which inputs trigger output.<br /><bullet>[0] - <m>both</m></bullet><bullet>[1] - <m>left</m></bullet><bullet>[2] - <m>right</m></bullet>
       </description>
     </entry>
     <entry name="/pad [instantiation double]">
@@ -55,7 +48,7 @@
         Get Object Info
       </digest>
       <description>
-        Print info about <o>fl.and~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+        Print info about <o>fl.and~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">

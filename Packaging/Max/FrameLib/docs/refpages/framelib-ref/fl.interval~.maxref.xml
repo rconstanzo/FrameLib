@@ -15,11 +15,7 @@
     </entry>
     <entry name="/units [enum]">
       <description>
-        Sets the time units used for setting the interval.<br />
-        <bullet>[0] - samples</bullet>
-        <bullet>[1] - ms</bullet>
-        <bullet>[2] - seconds</bullet>
-        <bullet>[3] - hz</bullet>
+        Sets the time units used for setting the interval.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><bullet>[3] - <m>hz</m></bullet>
       </description>
     </entry>
     <entry name="/switchable [instantiation bool]">
@@ -52,7 +48,7 @@
         Sets the time units used for setting the interval
       </digest>
       <description>
-        This argument sets the units parameter:<br /><br />Sets the time units used for setting the interval.
+        This argument sets the units parameter:<br /><br />Sets the time units used for setting the interval.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><bullet>[3] - <m>hz</m></bullet>
       </description>
     </objarg>
     <objarg name="switchable" optional="1" type="number">
@@ -81,7 +77,7 @@
         Get Object Info
       </digest>
       <description>
-        Print info about <o>fl.interval~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+        Print info about <o>fl.interval~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="process">

@@ -15,9 +15,7 @@
     </entry>
     <entry name="/mode [enum]">
       <description>
-        Sets the filter mode when multi-output mode is off:<br/><br/>lowpass - low pass.<br/>highpass - high pass.<br />
-        <bullet>[0] - lowpass</bullet>
-        <bullet>[1] - highpass</bullet>
+        Sets the filter mode when multi-output mode is off:<br /><bullet>[0] - <m>lowpass</m> - low pass.</bullet><bullet>[1] - <m>highpass</m> - high pass.</bullet>
       </description>
     </entry>
     <entry name="/multi_output [instantiation bool]">
@@ -27,7 +25,7 @@
     </entry>
     <entry name="/dynamic [instantiation bool]">
       <description>
-        Creates inputs for per sample values for each of the filter parameters.<br/>If an input is not provided the corresponding parameter value is used.
+        Creates inputs for per sample values for each of the filter parameters. If an input is not provided the corresponding parameter value is used.
       </description>
     </entry>
     <entry name="/reset [bool]">
@@ -55,7 +53,7 @@
         Sets the filter mode when multi-output mode is off
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Sets the filter mode when multi-output mode is off:<br /><br />lowpass - low pass.<br />highpass - high pass.
+        This argument sets the mode parameter:<br /><br />Sets the filter mode when multi-output mode is off:<br /><bullet>[0] - <m>lowpass</m> - low pass.</bullet><bullet>[1] - <m>highpass</m> - high pass.</bullet>
       </description>
     </objarg>
   </objarglist>
@@ -68,7 +66,7 @@
         Get Object Info
       </digest>
       <description>
-        Print info about <o>fl.onepolezero~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+        Print info about <o>fl.onepolezero~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">

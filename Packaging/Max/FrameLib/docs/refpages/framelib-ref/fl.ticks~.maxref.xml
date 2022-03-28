@@ -15,30 +15,22 @@
     </entry>
     <entry name="/direction [enum]">
       <description>
-        Sets the direction of counting.<br />
-        <bullet>[0] - up</bullet>
-        <bullet>[1] - down</bullet>
+        Sets the direction of counting.<br /><bullet>[0] - <m>up</m></bullet><bullet>[1] - <m>down</m></bullet>
       </description>
     </entry>
     <entry name="/reset [int]">
       <description>
-        Sets the reset value.<br/>A value of -1 can be used for direction independent reset.<br/>This results in reset to 0 when counting up and (limit - 1) when counting down.
+        Sets the reset value. A value of -1 can be used for direction independent reset. This results in reset to 0 when counting up and (limit - 1) when counting down.
       </description>
     </entry>
     <entry name="/mode [enum]">
       <description>
-        Sets the mode:<br/><br/>run - the count continues until it hits the limit or zero.<br/>loop - the count loops between zero and the limit minus one.<br/>pause - the count is paused until the mode is changed.<br/>stop - the count returns to the reset value until the mode is changed.<br />
-        <bullet>[0] - run</bullet>
-        <bullet>[1] - loop</bullet>
-        <bullet>[2] - pause</bullet>
-        <bullet>[3] - stop</bullet>
+        Sets the mode:<br /><bullet>[0] - <m>run</m> - the count continues until it hits the limit or zero.</bullet><bullet>[1] - <m>loop</m> - the count loops between zero and the limit minus one.</bullet><bullet>[2] - <m>pause</m> - the count is paused until the mode is changed.</bullet><bullet>[3] - <m>stop</m> - the count returns to the reset value until the mode is changed.</bullet>
       </description>
     </entry>
     <entry name="/idle [enum]">
       <description>
-        Sets the idle output (the output when stopped, paused or out of bounds):<br/><br/>repeat - repeat the current count.<br/>empty - output an empty frame.<br />
-        <bullet>[0] - repeat</bullet>
-        <bullet>[1] - empty</bullet>
+        Sets the idle output (the output when stopped, paused or out of bounds):<br /><bullet>[0] - <m>repeat</m> - repeat the current count.</bullet><bullet>[1] - <m>empty</m> - output an empty frame.</bullet>
       </description>
     </entry>
   </misc>
@@ -61,7 +53,7 @@
         Sets the direction of counting
       </digest>
       <description>
-        This argument sets the direction parameter:<br /><br />Sets the direction of counting.
+        This argument sets the direction parameter:<br /><br />Sets the direction of counting.<br /><bullet>[0] - <m>up</m></bullet><bullet>[1] - <m>down</m></bullet>
       </description>
     </objarg>
     <objarg name="reset" optional="1" type="int">
@@ -69,7 +61,7 @@
         Sets the reset value
       </digest>
       <description>
-        This argument sets the reset parameter:<br /><br />Sets the reset value.<br />A value of -1 can be used for direction independent reset.<br />This results in reset to 0 when counting up and (limit - 1) when counting down.
+        This argument sets the reset parameter:<br /><br />Sets the reset value. A value of -1 can be used for direction independent reset. This results in reset to 0 when counting up and (limit - 1) when counting down.
       </description>
     </objarg>
     <objarg name="mode" optional="1" type="symbol">
@@ -77,7 +69,7 @@
         Sets the mode
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Sets the mode:<br /><br />run - the count continues until it hits the limit or zero.<br />loop - the count loops between zero and the limit minus one.<br />pause - the count is paused until the mode is changed.<br />stop - the count returns to the reset value until the mode is changed.
+        This argument sets the mode parameter:<br /><br />Sets the mode:<br /><bullet>[0] - <m>run</m> - the count continues until it hits the limit or zero.</bullet><bullet>[1] - <m>loop</m> - the count loops between zero and the limit minus one.</bullet><bullet>[2] - <m>pause</m> - the count is paused until the mode is changed.</bullet><bullet>[3] - <m>stop</m> - the count returns to the reset value until the mode is changed.</bullet>
       </description>
     </objarg>
     <objarg name="idle" optional="1" type="symbol">
@@ -85,7 +77,7 @@
         Sets the idle output (the output when stopped, paused or out of bounds)
       </digest>
       <description>
-        This argument sets the idle parameter:<br /><br />Sets the idle output (the output when stopped, paused or out of bounds):<br /><br />repeat - repeat the current count.<br />empty - output an empty frame.
+        This argument sets the idle parameter:<br /><br />Sets the idle output (the output when stopped, paused or out of bounds):<br /><bullet>[0] - <m>repeat</m> - repeat the current count.</bullet><bullet>[1] - <m>empty</m> - output an empty frame.</bullet>
       </description>
     </objarg>
   </objarglist>
@@ -98,7 +90,7 @@
         Get Object Info
       </digest>
       <description>
-        Print info about <o>fl.ticks~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+        Print info about <o>fl.ticks~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">

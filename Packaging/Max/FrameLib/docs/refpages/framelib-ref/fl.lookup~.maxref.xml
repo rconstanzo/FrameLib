@@ -10,21 +10,12 @@
   <misc name="Parameters">
     <entry name="/scale [enum]">
       <description>
-        Sets the scaling of the input for lookup:<br/><br/>samples - the input is read as sample indices for reading from the table.<br/>normalised - the input range [0 to 1] is mapped across the table.<br/>bipolar - the input range [-1 to 1] is mapped across the table.<br/>Note that the edge parameter is also accounted for normalised and bipolar modes.<br/>This adjusts the scaling to work sensibly with cyclical modes.<br />
-        <bullet>[0] - samples</bullet>
-        <bullet>[1] - normalised</bullet>
-        <bullet>[2] - bipolar</bullet>
+        Sets the scaling of the input for lookup:<br /><bullet>[0] - <m>samples</m> - the input is read as sample indices for reading from the table.</bullet><bullet>[1] - <m>normalised</m> - the input range [0 to 1] is mapped across the table.</bullet><bullet>[2] - <m>bipolar</m> - the input range [-1 to 1] is mapped across the table.</bullet><br />Note that the edge parameter is also accounted for normalised and bipolar modes. This adjusts the scaling to work sensibly with cyclical modes.
       </description>
     </entry>
     <entry name="/edges [enum]">
       <description>
-        Sets the edge behaviour for both interpolation and lookup:<br/><br/>zero - values beyond the edges of the table are treated as zeros.<br/>extend - the edge values are extended infinitely in either direction.<br/>wrap - values are treated as wrapped or cyclical.<br/>fold - values are folded at edges without repetition of the edge values.<br/>mirror - values are mirrored at edges with the edge values repeated.<br/>extrapolate - values out of range are extrapolated via interpolation.<br />
-        <bullet>[0] - zero</bullet>
-        <bullet>[1] - extend</bullet>
-        <bullet>[2] - wrap</bullet>
-        <bullet>[3] - fold</bullet>
-        <bullet>[4] - mirror</bullet>
-        <bullet>[5] - extrapolate</bullet>
+        Sets the edge behaviour for both interpolation and lookup:<br /><bullet>[0] - <m>zero</m> - values beyond the edges of the table are treated as zeros.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are treated as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet><bullet>[5] - <m>extrapolate</m> - values out of range are extrapolated via interpolation.</bullet>
       </description>
     </entry>
     <entry name="/bound [bool]">
@@ -34,12 +25,7 @@
     </entry>
     <entry name="/interp [enum]">
       <description>
-        Sets the interpolation mode:<br/><br/>none - no interpolation.<br/>linear - linear interpolation.<br/>hermite - cubic hermite interpolation.<br/>bspline - cubic bspline interpolation.<br/>lagrange - cubic lagrange interpolation.<br />
-        <bullet>[0] - none</bullet>
-        <bullet>[1] - linear</bullet>
-        <bullet>[2] - hermite</bullet>
-        <bullet>[3] - bspline</bullet>
-        <bullet>[4] - lagrange</bullet>
+        Sets the interpolation mode:<br /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation.</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation.</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation.</bullet>
       </description>
     </entry>
   </misc>
@@ -54,7 +40,7 @@
         Sets the scaling of the input for lookup
       </digest>
       <description>
-        This argument sets the scale parameter:<br /><br />Sets the scaling of the input for lookup:<br /><br />samples - the input is read as sample indices for reading from the table.<br />normalised - the input range [0 to 1] is mapped across the table.<br />bipolar - the input range [-1 to 1] is mapped across the table.<br />Note that the edge parameter is also accounted for normalised and bipolar modes.<br />This adjusts the scaling to work sensibly with cyclical modes.
+        This argument sets the scale parameter:<br /><br />Sets the scaling of the input for lookup:<br /><bullet>[0] - <m>samples</m> - the input is read as sample indices for reading from the table.</bullet><bullet>[1] - <m>normalised</m> - the input range [0 to 1] is mapped across the table.</bullet><bullet>[2] - <m>bipolar</m> - the input range [-1 to 1] is mapped across the table.</bullet><br />Note that the edge parameter is also accounted for normalised and bipolar modes. This adjusts the scaling to work sensibly with cyclical modes.
       </description>
     </objarg>
     <objarg name="edges" optional="1" type="symbol">
@@ -62,7 +48,7 @@
         Sets the edge behaviour for both interpolation and lookup
       </digest>
       <description>
-        This argument sets the edges parameter:<br /><br />Sets the edge behaviour for both interpolation and lookup:<br /><br />zero - values beyond the edges of the table are treated as zeros.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are treated as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.<br />extrapolate - values out of range are extrapolated via interpolation.
+        This argument sets the edges parameter:<br /><br />Sets the edge behaviour for both interpolation and lookup:<br /><bullet>[0] - <m>zero</m> - values beyond the edges of the table are treated as zeros.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are treated as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet><bullet>[5] - <m>extrapolate</m> - values out of range are extrapolated via interpolation.</bullet>
       </description>
     </objarg>
     <objarg name="bound" optional="1" type="number">
@@ -78,7 +64,7 @@
         Sets the interpolation mode
       </digest>
       <description>
-        This argument sets the interp parameter:<br /><br />Sets the interpolation mode:<br /><br />none - no interpolation.<br />linear - linear interpolation.<br />hermite - cubic hermite interpolation.<br />bspline - cubic bspline interpolation.<br />lagrange - cubic lagrange interpolation.
+        This argument sets the interp parameter:<br /><br />Sets the interpolation mode:<br /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation.</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation.</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation.</bullet>
       </description>
     </objarg>
   </objarglist>
@@ -91,7 +77,7 @@
         Get Object Info
       </digest>
       <description>
-        Print info about <o>fl.lookup~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+        Print info about <o>fl.lookup~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">

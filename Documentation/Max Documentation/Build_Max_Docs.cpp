@@ -9,6 +9,8 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <regex>
+#include <stdexcept>
 #include <libgen.h>
 
 struct MessageArgument
@@ -18,23 +20,100 @@ struct MessageArgument
     std::string mType;
 };
 
-void findReplace(std::string& str, const std::string& findStr, const std::string& replaceStr)
+bool matchPartialString(const std::string& str, const std::string& findStr, size_t pos)
 {
-    for (size_t startPos = str.find(findStr); startPos != std::string::npos; startPos = str.find(findStr))
-        str.replace(startPos, findStr.length(), replaceStr);
+    return !strncmp(findStr.c_str(), str.data() + pos, findStr.length());
+}
+
+bool detectItem(const std::string& str, size_t pos)
+{
+    std::string line = str.substr(pos, str.find(". ", pos) - pos);
+    
+    // Match bullet point style item
+    
+    const std::regex item_regex("^[^\\s]+ -");
+    
+    return std::regex_search(line, item_regex);
+}
+   
+bool detectExprItem(const std::string& str, size_t pos)
+{
+    pos = str.find_first_of(".{", pos);
+    
+    return pos == std::string::npos || str[pos] != '.';
+}
+
+bool detectFormulaItem(const std::string& str, size_t pos)
+{
+    std::string line = str.substr(pos, str.find(". ", pos) - pos);
+
+    // Match formula (might be made more advanced later)
+    
+    const std::regex item_regex(".*π.*");
+    
+    return std::regex_search(line, item_regex) && line.find(": ") != std::string::npos;
+}
+
+void addMessageTags(std::string& str, size_t pos)
+{
+    auto replace =[&](const std::string& s)
+    {
+        str.replace(pos, 1, s);
+        pos += s.length();
+    };
+    
+    if (detectItem(str, pos))
+    {
+        str.insert(pos, "<m>");
+        str.insert(str.find(" -", pos), "</m>");
+    }
+    else if (detectExprItem(str, pos))
+    {
+        bool start = true;
+        pos = str.find("{", pos);
+        
+        while ((pos = str.find_first_of(" .}", pos)) != std::string::npos)
+        {
+            if (str[pos] == '.' || str[pos] == '}')
+                break;
+            
+            bool end = str[pos + 1] == '}';
+            
+            if (start && end)
+                break;
+            
+            if (end)
+                replace("</m> ");
+            else if (start)
+                replace(" <m>");
+            else
+                replace("</m> <m>");
+            
+            start = false;
+        }
+    }
+}
+    
+bool startFormulaTags(std::string& str, size_t pos)
+{
+    if (detectFormulaItem(str, pos))
+    {
+        str.insert(str.find(": ", pos) + 2, "<bluebox><i>");
+        return true;
+    }
+    
+    return false;
+}
+
+void findReplace(std::string& str, const std::string& findStr, const std::string& replaceStr, size_t pos = 0)
+{
+    for (pos = str.find(findStr, pos); pos != std::string::npos; pos = str.find(findStr, pos))
+        str.replace(pos, findStr.length(), replaceStr);
 }
 
 void findReplaceOnce(std::string& str, const std::string& findStr, const std::string& replaceStr)
 {
     str.replace(str.find(findStr), findStr.length(), replaceStr);
-}
-
-std::string formatInfo(std::string str)
-{
-    findReplace(str, ". ", ".<br />");
-    findReplace(str, ": ", ":<br /><br />");
- 
-    return str;
 }
 
 std::string replaceAudioStream(std::string str)
@@ -61,6 +140,9 @@ std::string escapeXML(std::string str)
         {
             case '&':  replacement = "&amp;";  break;
             case '<':  replacement = "&lt;";   break;
+            case '>':  replacement = "&gt;";   break;
+            case '\'':  replacement = "&#39;";   break;
+            case '"':  replacement = "&#34;";   break;
             default: ;
         }
         
@@ -106,14 +188,184 @@ std::string getParamName(const FrameLib_Parameters *params, unsigned long idx)
     return name;
 }
 
-std::string processParamInfo(const FrameLib_Parameters *params, unsigned long idx)
+std::string processParamInfo(const std::string& objectName, const FrameLib_Parameters *params, unsigned long idx)
 {
-    std::string info = params->getInfo(idx);
+    std::string info = escapeXML(params->getInfo(idx));
+    std::string lineEnd = ". ";
+
+    bool isEnum = params->getType(idx) == FrameLib_Parameters::Type::Enum;
+    unsigned long numEnumItems = 0;
+    unsigned long bulletCount = 0;
+    
+    // Helpers
+    
+    auto isFinalNote = [&](size_t pos)
+    {
+        return matchPartialString(info, "Note that ", pos);
+    };
+    
+    auto isExprItem = [&](size_t pos)
+    {
+        return detectExprItem(info, pos);
+    };
+    
+    auto isItem = [&](size_t pos)
+    {
+        return detectItem(info, pos);
+    };
+    
+    auto matchEnumItem = [&](size_t pos)
+    {
+        if (isEnum && numEnumItems < params->getMax(idx) + 1)
+        {
+            std::string next = escapeXML(params->getItemString(idx, numEnumItems)) + " -";
+            return matchPartialString(info, next, pos);
+        }
+        
+        return false;
+    };
+    
+    auto isEnumItem = [&](size_t pos)
+    {
+        if (isEnum && matchEnumItem(pos))
+        {
+            numEnumItems++;
+            return true;
+        }
+        
+        return false;
+    };
+           
+    // Deal with indexed parameters
     
     if (detectIndexedParam(params, idx))
         findReplaceOnce(info, "1", "N [1-" + maxIndexString(params, idx) + "]");
     
-    return escapeXML(info);
+    // Ignore anything before the first colon (if there is none we are done with the info from the objects)
+    
+    size_t pos = info.find(": ");
+    
+    if (pos != std::string::npos)
+        pos += 2;
+    
+    bool multiLine = false;
+    bool newItem = true;
+    
+    // Helper for insertions
+    
+    auto replaceLineEnd = [&](const std::string& str)
+    {
+        info.replace(pos, lineEnd.length(), str);
+        pos += str.length();
+    };
+    
+    auto insertString = [&](const std::string& str)
+    {
+        info.insert(pos, str);
+        pos += str.length();
+    };
+    
+    auto startBullet = [&]()
+    {
+        insertString("<bullet>");
+        bulletCount++;
+        if (isEnum)
+            insertString("[" + std::to_string(numEnumItems - 1) + "] - ");
+    };
+    
+    auto endBullet = [&]()
+    {
+        insertString("</bullet>");
+        bulletCount--;
+    };
+    
+    // Process items that need to go onto separate lines / bullet points
+    
+    while (pos != std::string::npos)
+    {
+        // If there's a final note separate it and finish
+        
+        if (isFinalNote(pos))
+        {
+            if (bulletCount)
+                endBullet();
+            info.insert(pos, "<br />");
+            break;
+        }
+        
+        // Find the first enum item
+        
+        if (!numEnumItems)
+            isEnumItem(pos);
+        
+        std::string sub = info.substr(pos);
+        if (matchPartialString(info, "cosine_sum", pos))
+            newItem = newItem;
+        
+        if (newItem)
+        {
+            addMessageTags(info, pos);
+            startBullet();
+        }
+        
+        bool formula = startFormulaTags(info, pos);
+        
+        // Find next line
+        
+        pos = info.find(lineEnd, pos);
+        
+        if (pos != std::string::npos)
+        {
+            bool finalNote = isFinalNote(pos + 2);
+            
+            if (isExprItem(pos + 2) || isEnumItem(pos + 2) || isItem(pos + 2) || finalNote)
+            {
+                if (formula)
+                    replaceLineEnd("</i></bluebox>");
+                else
+                    replaceLineEnd(".");
+                endBullet();
+                if (multiLine && !finalNote)
+                    insertString("<br />");
+                newItem = true;
+            }
+            else
+            {
+                pos += lineEnd.length();
+                multiLine = true;
+                newItem = false;
+            }
+        }
+    }
+
+    if (bulletCount)
+        info += "</bullet>";
+    
+    // Check enums
+    
+    if (isEnum)
+    {
+        if (!numEnumItems)
+        {
+            // If there's no list in the info string then insert it here
+            
+            info += "<br />" ; // put a break big break between description and enum options
+
+            for (long i = 0; i <= params->getMax(idx); i++)
+                info += "<bullet>[" + std::to_string(i) + "]" + " - <m>" + params->getItemString(idx, i) + "</m></bullet>";
+        }
+        else if (numEnumItems != params->getMax(idx) + 1)
+        {
+            std::string enumName = params->getName(idx);
+            throw std::runtime_error("partial or incorrect enum list (content or formatting) detected in object " + objectName + " enum " + enumName);
+        }
+    }
+    
+    // Replace any colons
+    
+    findReplace(info, ": ", ":<br />");
+    
+    return info;
 }
 
 bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxObjectArgsMode argsMode)
@@ -215,12 +467,12 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
             type = "symbol";
         
         std::string name = getParamName(params, paramIdx);
-        std::string rawDescription = processParamInfo(params, paramIdx);
+        std::string rawDescription = processParamInfo(object, params, paramIdx);
         std::string digest = rawDescription.substr(0, rawDescription.find_first_of(".:"));
-        std::string description = "This argument sets the " + name + " parameter:<br /><br />" + formatInfo(rawDescription);
+        std::string description = "This argument sets the " + name + " parameter:<br /><br />" + rawDescription;
         
         if (detectIndexedParam(params, paramIdx))
-            description = "Arguments set parameters " + name + ":<br /><br />" + formatInfo(rawDescription);
+            description = "Arguments set parameters " + name + ":<br /><br />" + rawDescription;
         
         file << tab2 + "<objarg name='" + name + "' optional='1' type='" + type + "'>\n";
         writeDigestDescription(tab3, digest, description);
@@ -351,10 +603,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
 
             std::string name = getParamName(params, i);
             std::string defaultStr = params->getDefaultString(i);
-         
-            FrameLib_Parameters::Type type = params->getType(i);
-            //FrameLib_Parameters::NumericType numericType = params->getNumericType(i);
-                    
+                             
             if (defaultStr.size())
                 file << tab2 + "<entry name = '/" + name + " [" + params->getTypeString(i) + "]' >\n";
             else
@@ -363,22 +612,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
             // Construct the description
             
             file << tab3 + "<description>\n";
-            file << tab4 + processParamInfo(params, i);
-            
-            if (type == FrameLib_Parameters::Type::Enum)
-            {
-                file << "<br></br>\n" ; // if enum put a break big break between description and the enum options
-                
-                for (long j = 0; j <= params->getMax(i); j++)
-                {
-                    std::string enumParamNum = std::to_string(j);
-                    
-                    if (j == params->getMax(i))
-                        file << tab4 + "<bullet>[" + enumParamNum + "]" + " - " + params->getItemString(i, j) + "</bullet>";
-                    else if (j != params->getMax(i))
-                        file << tab4 + "<bullet>[" + enumParamNum + "]" + " - " + params->getItemString(i, j) + "</bullet>\n";
-                }
-            }
+            file << tab4 + processParamInfo(object, params, i);
             file << "\n" + tab3 + "</description>\n";
             file << tab2 + "</entry>\n";
             
@@ -422,7 +656,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     std::vector<MessageArgument> resetArgs { { "samplerate", true, "number" } };
     std::vector<MessageArgument> processArgs { { "length", false, "int" } };
     
-    std::string infoDescription("Print info about " + objectDoc + " to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>");
+    std::string infoDescription("Print info about " + objectDoc + " to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>");
     std::string processDescription("Process a non-realtime network,advancing time by the number of samples specified by the required <m>length</m> argument. <br /><br />This will only take effect if the object has its <m>rt</m> attribute set to <m>0</m> " + nonRealtimeTutorial);
     std::string resetDescription("Resets a non-realtime network to the start of time ready for processing, optionally setting the sample rate. If the sample rate is omitted it will be set to the global sample rate.<br /><br />This will only take effect if " + objectDoc + " has its <m>rt</m> attribute set to <m>0</m>. " + nonRealtimeTutorial);
     std::string signalDescription("Used to synchonise FrameLib objects with Max's audio processing.");

@@ -10,24 +10,17 @@
   <misc name="Parameters">
     <entry name="/max_length [instantiation int]">
       <description>
-        Sets the maximum processing length.<br/>The processing length is M + N - 1 where M and N are the lengths of the two inputs.
+        Sets the maximum processing length. The processing length is M + N - 1 where M and N are the lengths of the two inputs.
       </description>
     </entry>
     <entry name="/mode [instantiation enum]">
       <description>
-        Sets the type of input and output.<br />
-        <bullet>[0] - real</bullet>
-        <bullet>[1] - complex</bullet>
+        Sets the type of input and output.<br /><bullet>[0] - <m>real</m></bullet><bullet>[1] - <m>complex</m></bullet>
       </description>
     </entry>
     <entry name="/edges [instantiation enum]">
       <description>
-        Sets the edge behaviour of the correlation process:<br/><br/>The basic operation is a linear one with output of the processing length.<br/>For modes other than linear the output length is reduced to the maximum of M and N.<br/>Excess from the linear operation is added back into the available length as specified.<br/>linear - the output is the full processing length with no further processing.<br/>circular - excess at the end is added back to the beginning of the output.<br/>wrap - as circular mode but rotated such that wrapping occurs equally at both ends.<br/>fold - as wrap but folding not wrapping at the edges (edge values are not repeated).<br/>mirror - as fold but with repeated edge values.<br />
-        <bullet>[0] - linear</bullet>
-        <bullet>[1] - circular</bullet>
-        <bullet>[2] - wrap</bullet>
-        <bullet>[3] - fold</bullet>
-        <bullet>[4] - mirror</bullet>
+        Sets the edge behaviour of the correlation process. The basic operation is a linear one with output of the processing length. For modes other than linear the output length is reduced to the maximum of M and N. Excess from the linear operation is added back into the available length as specified:<br /><bullet>[0] - <m>linear</m> - the output is the full processing length with no further processing.</bullet><bullet>[1] - <m>circular</m> - excess at the end is added back to the beginning of the output.</bullet><bullet>[2] - <m>wrap</m> - as circular mode but rotated such that wrapping occurs equally at both ends.</bullet><bullet>[3] - <m>fold</m> - as wrap but folding not wrapping at the edges (edge values are not repeated).</bullet><bullet>[4] - <m>mirror</m> - as fold but with repeated edge values.</bullet>
       </description>
     </entry>
   </misc>
@@ -42,7 +35,7 @@
         Sets the maximum processing length
       </digest>
       <description>
-        This argument sets the max_length parameter:<br /><br />Sets the maximum processing length.<br />The processing length is M + N - 1 where M and N are the lengths of the two inputs.
+        This argument sets the max_length parameter:<br /><br />Sets the maximum processing length. The processing length is M + N - 1 where M and N are the lengths of the two inputs.
       </description>
     </objarg>
     <objarg name="mode" optional="1" type="symbol">
@@ -50,7 +43,7 @@
         Sets the type of input and output
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Sets the type of input and output.
+        This argument sets the mode parameter:<br /><br />Sets the type of input and output.<br /><bullet>[0] - <m>real</m></bullet><bullet>[1] - <m>complex</m></bullet>
       </description>
     </objarg>
     <objarg name="edges" optional="1" type="symbol">
@@ -58,7 +51,7 @@
         Sets the edge behaviour of the correlation process
       </digest>
       <description>
-        This argument sets the edges parameter:<br /><br />Sets the edge behaviour of the correlation process:<br /><br />The basic operation is a linear one with output of the processing length.<br />For modes other than linear the output length is reduced to the maximum of M and N.<br />Excess from the linear operation is added back into the available length as specified.<br />linear - the output is the full processing length with no further processing.<br />circular - excess at the end is added back to the beginning of the output.<br />wrap - as circular mode but rotated such that wrapping occurs equally at both ends.<br />fold - as wrap but folding not wrapping at the edges (edge values are not repeated).<br />mirror - as fold but with repeated edge values.
+        This argument sets the edges parameter:<br /><br />Sets the edge behaviour of the correlation process. The basic operation is a linear one with output of the processing length. For modes other than linear the output length is reduced to the maximum of M and N. Excess from the linear operation is added back into the available length as specified:<br /><bullet>[0] - <m>linear</m> - the output is the full processing length with no further processing.</bullet><bullet>[1] - <m>circular</m> - excess at the end is added back to the beginning of the output.</bullet><bullet>[2] - <m>wrap</m> - as circular mode but rotated such that wrapping occurs equally at both ends.</bullet><bullet>[3] - <m>fold</m> - as wrap but folding not wrapping at the edges (edge values are not repeated).</bullet><bullet>[4] - <m>mirror</m> - as fold but with repeated edge values.</bullet>
       </description>
     </objarg>
   </objarglist>
@@ -71,7 +64,7 @@
         Get Object Info
       </digest>
       <description>
-        Print info about <o>fl.correlate~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+        Print info about <o>fl.correlate~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">

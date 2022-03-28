@@ -20,12 +20,12 @@
     </entry>
     <entry name="/trigger_ins [instantiation variable length bool array]">
       <description>
-        Sets which inputs trigger output using an array of bools.<br/>By default all inputs trigger output.
+        Sets which inputs trigger output using an array of bools. By default all inputs trigger output.
       </description>
     </entry>
     <entry name="/padding [variable length int array]">
       <description>
-        Sets the zero padding for each input using an array of integers.<br/>By default there is no zero padding.
+        Sets the zero padding for each input using an array of integers. By default there is no zero padding.
       </description>
     </entry>
     <entry name="/item_01...10 [string]">
@@ -66,7 +66,7 @@
         Get Object Info
       </digest>
       <description>
-        Print info about <o>fl.makestring~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+        Print info about <o>fl.makestring~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">

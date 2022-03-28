@@ -25,17 +25,12 @@
     </entry>
     <entry name="/output [enum]">
       <description>
-        Sets whether to output values in terms of power or amplitude.<br />
-        <bullet>[0] - power</bullet>
-        <bullet>[1] - amplitude</bullet>
+        Sets whether to output values in terms of power or amplitude.<br /><bullet>[0] - <m>power</m></bullet><bullet>[1] - <m>amplitude</m></bullet>
       </description>
     </entry>
     <entry name="/weighting [enum]">
       <description>
-        Sets the weighting of the tapers:<br/><br/>uniform - all tapers are weighted equally.<br/>linear - tapers are weighted linearly in a decreasing manner.<br/>parabolic - tapers are weighted with a parabola in a decreasing manner.<br />
-        <bullet>[0] - uniform</bullet>
-        <bullet>[1] - linear</bullet>
-        <bullet>[2] - parabolic</bullet>
+        Sets the weighting of the tapers:<br /><bullet>[0] - <m>uniform</m> - all tapers are weighted equally.</bullet><bullet>[1] - <m>linear</m> - tapers are weighted linearly in a decreasing manner.</bullet><bullet>[2] - <m>parabolic</m> - tapers are weighted with a parabola in a decreasing manner.</bullet>
       </description>
     </entry>
   </misc>
@@ -74,7 +69,7 @@
         Sets whether to output values in terms of power or amplitude
       </digest>
       <description>
-        This argument sets the output parameter:<br /><br />Sets whether to output values in terms of power or amplitude.
+        This argument sets the output parameter:<br /><br />Sets whether to output values in terms of power or amplitude.<br /><bullet>[0] - <m>power</m></bullet><bullet>[1] - <m>amplitude</m></bullet>
       </description>
     </objarg>
     <objarg name="weighting" optional="1" type="symbol">
@@ -82,7 +77,7 @@
         Sets the weighting of the tapers
       </digest>
       <description>
-        This argument sets the weighting parameter:<br /><br />Sets the weighting of the tapers:<br /><br />uniform - all tapers are weighted equally.<br />linear - tapers are weighted linearly in a decreasing manner.<br />parabolic - tapers are weighted with a parabola in a decreasing manner.
+        This argument sets the weighting parameter:<br /><br />Sets the weighting of the tapers:<br /><bullet>[0] - <m>uniform</m> - all tapers are weighted equally.</bullet><bullet>[1] - <m>linear</m> - tapers are weighted linearly in a decreasing manner.</bullet><bullet>[2] - <m>parabolic</m> - tapers are weighted with a parabola in a decreasing manner.</bullet>
       </description>
     </objarg>
   </objarglist>
@@ -95,7 +90,7 @@
         Get Object Info
       </digest>
       <description>
-        Print info about <o>fl.multitaper~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+        Print info about <o>fl.multitaper~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">
