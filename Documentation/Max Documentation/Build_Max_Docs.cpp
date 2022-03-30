@@ -49,9 +49,9 @@ bool detectFormulaItem(const std::string& str, size_t pos)
 
     // Match formula (might be made more advanced later)
     
-    const std::regex item_regex(".*π.*");
+    const std::regex formula_regex(".*π.*");
     
-    return std::regex_search(line, item_regex) && line.find(": ") != std::string::npos;
+    return std::regex_search(line, formula_regex) && line.find(": ") != std::string::npos;
 }
 
 void addMessageTags(std::string& str, size_t pos)
@@ -368,6 +368,64 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
     return info;
 }
 
+std::vector<std::string> getAliasStrings(const std::string& objectName)
+{
+    std::string fileName(__FILE__);
+    std::string dirPath = dirname(const_cast<char *>(fileName.c_str()));
+    std::string objectMappings = dirPath + "/../../Packaging/Max/FrameLib/init/fl-objectmappings.txt";
+    
+    std::ifstream file(objectMappings);
+    
+    std::vector<std::string> aliases;
+    
+    if (file.is_open())
+    {
+        std::string aliasMappings((std::istreambuf_iterator<char>(file)), (std::istreambuf_iterator<char>()));
+        
+        // Match bullet point style item
+        
+        const std::regex alias_regex("max objectfile (.+) " + objectName + ";");
+        std::smatch results;
+        
+        while (std::regex_search(aliasMappings, results, alias_regex))
+        {
+            // Store sub string and get rid of the text already matched
+
+            aliases.push_back(escapeXML(results[1]));
+            aliasMappings = results.suffix();
+        }
+    }
+    
+    file.close();
+    
+    return aliases;
+}
+
+std::string getAliases(const std::string& fileName, const std::string& objectName)
+{
+    std::string aliases;
+    
+    auto aliasStrings = getAliasStrings(fileName);
+   
+    for (auto it = aliasStrings.begin(); it != aliasStrings.end(); it++)
+    {
+        std::string alias = (objectName == *it) ? fileName : *it;
+        aliases += std::string(aliases.length() ? ", <o>" : "<o>") + alias + "</o>";
+    }
+    
+    return aliases;
+}
+
+std::string aliasName(const std::string& fileName)
+{
+    auto aliases = getAliasStrings(fileName);
+
+    if (aliases.size() && aliases[0].find_first_of("+-/*;|%!=") != std::string::npos)
+        return aliases[0];
+    
+    return fileName;
+}
+
 bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxObjectArgsMode argsMode)
 {
     std::string fileName(__FILE__);
@@ -377,10 +435,9 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     enum InfoFlags { kInfoDesciption = 0x01, kInfoInputs = 0x02, kInfoOutputs = 0x04, kInfoParameters = 0x08 };
     
     std::ofstream file;
-    std::string sp = " ";               // code is more readable with sp rather than " "
-    std::string object = inputName;     // refactor to not copy variable.
+    std::string object = aliasName(inputName);
     
-    std::string objectDoc = "<o>" + inputName + "</o>";
+    std::string objectDoc = "<o>" + object + "</o>";
     std::string objectCategory = "!@#@#$";
     std::string objectKeywords = "boilerplate keywords";
     std::string objectInfo;
@@ -394,7 +451,6 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     std::string tab3 = tab2 + tab1;
     std::string tab4 = tab2 + tab2;
     
-    
     // Reuseable strings
     
     std::string conversionTutorial("More info on conversion between Max messages and FrameLib can be found in <link name='04_fl_conversion' module='framelib' type='tutorial'>Tutorial 4</link>.");
@@ -402,7 +458,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     
     // Write to a temporary relative location
     
-    file.open(tmpFolder + object + ".maxref.xml");
+    file.open(tmpFolder + inputName + ".maxref.xml");
     
     const FrameLib_Parameters *params = frameLibObject->getParameters();
     
@@ -411,6 +467,8 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         std::transform(s.begin(), s.end(), s.begin(), [](unsigned char c){ return std::tolower(c); });
         return s;
     };
+    
+    // Writing Helpers
     
     auto writeDigestDescription = [&](const std::string& tab, const std::string& digest, const std::string& description)
     {
@@ -539,6 +597,16 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         file << tab2 + "</method>\n";
     };
     
+    auto paramTypeOnly= [&](unsigned long i)
+    {
+        std::string(str) = params->getTypeString(i);
+        
+        if (matchPartialString(str, "instantiation ", 0))
+            findReplaceOnce(str, "instantiation ", "");
+        
+        return str;
+    };
+    
     // Check that the file has opened correctly
     
     if (!file.is_open())
@@ -602,17 +670,15 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
             // Name, type and default value
 
             std::string name = getParamName(params, i);
+            std::string instantiation(params->getInstantiation(i) ? "<h6><i>INSTANTIATION ONLY</i></h6>" : "");
             std::string defaultStr = params->getDefaultString(i);
                              
-            if (defaultStr.size())
-                file << tab2 + "<entry name = '/" + name + " [" + params->getTypeString(i) + "]' >\n";
-            else
-                file << tab2 + "<entry name = '/" + name + " [" + params->getTypeString(i) + "]' >\n";
+            file << tab2 + "<entry name = '/" + name + " [" + paramTypeOnly(i) + "]' >\n";
             
             // Construct the description
             
             file << tab3 + "<description>\n";
-            file << tab4 + processParamInfo(object, params, i);
+            file << tab4 + instantiation + processParamInfo(object, params, i);
             file << "\n" + tab3 + "</description>\n";
             file << tab2 + "</entry>\n";
             
@@ -657,9 +723,9 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     std::vector<MessageArgument> processArgs { { "length", false, "int" } };
     
     std::string infoDescription("Print info about " + objectDoc + " to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>");
-    std::string processDescription("Process a non-realtime network,advancing time by the number of samples specified by the required <m>length</m> argument. <br /><br />This will only take effect if the object has its <m>rt</m> attribute set to <m>0</m> " + nonRealtimeTutorial);
-    std::string resetDescription("Resets a non-realtime network to the start of time ready for processing, optionally setting the sample rate. If the sample rate is omitted it will be set to the global sample rate.<br /><br />This will only take effect if " + objectDoc + " has its <m>rt</m> attribute set to <m>0</m>. " + nonRealtimeTutorial);
-    std::string signalDescription("Used to synchonise FrameLib objects with Max's audio processing.");
+    std::string processDescription("Processes a non-realtime network, advancing time by the number of samples specified by the required <m>length</m> argument. <br /><br />This will only take effect if the object has its <m>rt</m> attribute set to <m>0</m> " + nonRealtimeTutorial);
+    std::string resetDescription("Resets a non-realtime network to the start of time ready for processing, optionally setting the sample rate. If the <m>samplerate</m> argument is omitted the network will be set to the global sample rate.<br /><br />This will only take effect if " + objectDoc + " has its <m>rt</m> attribute set to <m>0</m>. " + nonRealtimeTutorial);
+    std::string signalDescription("Synchonises FrameLib objects with Max's audio processing.");
     std::string connectionDescription("Used internally by FrameLib's connection routines. User messages have no effect.");
 
     if (frameLibObject->getNumAudioChans())
@@ -721,8 +787,8 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     // Attributes
     
     std::string bufferDescription("Sets the non-realtime <o>buffer~</o> for " + objectDoc +". This is the <o>buffer~</o> used for IO in a non-realtime setting.<br /><br />" + nonRealtimeTutorial);
-    std::string rtDescription("Sets the realtime state for " + objectDoc + ". When set to <m>0</m> " + objectDoc + " can form part of a non-realtime network for processing in message threads, using <o>buffer~</o> objects for audio IO.<br /><br />" + nonRealtimeTutorial);
-    std::string idDescription("Sets the context name for " + objectDoc + ".<br /><br />More info on FrameLib contexts can be found in <link name='10_fl_contexts' module='framelib' type='tutorial'>Tutorial 10</link>.");
+    std::string rtDescription("Sets the realtime state for " + objectDoc + ". When set to <m>0</m> " + objectDoc + " forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />" + nonRealtimeTutorial);
+    std::string idDescription("Sets the context name for " + objectDoc + " in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name='10_fl_contexts' module='framelib' type='tutorial'>Tutorial 10</link>.");
     
     file << tab1 + "<!--ATTRIBUTES-->\n";
     file << tab1 + "<attributelist>\n";
@@ -745,20 +811,31 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         file << tab1 + "<misc name = 'Output'>\n";
         file << tab2 + "<entry name = 'anything'>\n";
         file << tab3 + "<description>\n";
-        file << tab4 + "If the frame input to <o>fl.tomax~</o> is a tagged frame then the output is a set of messages each starting with the relevant tag and followed by the related value(s).\n";
+        file << tab4 + "If the input to <o>fl.tomax~</o> is a tagged frame then the output is a set of messages each starting with the relevant tag and followed by the related value(s).\n";
         file << tab3 + "</description>\n";
         file << tab2 + "</entry>\n";
         file << tab2 + "<entry name = 'list'>\n";
         file << tab3 + "<description>\n";
-        file << tab4 + "If the frame input to <o>fl.tomax~</o> is a vector then the output is a list.\n";
+        file << tab4 + "If the input to <o>fl.tomax~</o> is a vector then the output is a list.\n";
         file << tab3 + "</description>\n";
         file << tab2 + "</entry>\n";
         file << tab1 + "</misc>\n\n";
     }
     
-    // Keywords
+    // Keywords and Aliases
     
+    std::string aliases = getAliases(inputName, object);
+    
+    file << tab1 + "<!--DISCUSSION-->\n";
     file << tab1 + "<misc name = 'Discussion'>\n";
+    if (aliases.length())
+    {
+        file << tab2 + "<entry name = 'Aliases'>\n";
+        file << tab3 + "<description>\n";
+        file << tab4 + aliases + "\n";
+        file << tab3 + "</description>\n";
+        file << tab2 + "</entry>\n";
+    }
     file << tab2 + "<entry name = 'Keywords'>\n";
     file << tab3 + "<description>\n";
     file << tab4 + objectKeywords + "\n";

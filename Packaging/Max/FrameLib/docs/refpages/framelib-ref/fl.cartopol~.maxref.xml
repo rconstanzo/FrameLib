@@ -8,14 +8,14 @@
     Conversion may be in 2D or 3D (using spherical coordinates). The outputs are frames of the same length as the longest input. Shorter inputs are padded with zeros prior to conversion.
   </description>
   <misc name="Parameters">
-    <entry name="/dimensions [instantiation enum]">
+    <entry name="/dimensions [enum]">
       <description>
-        Sets the number of dimensions (and hence inputs and outputs).<br /><bullet>[0] - <m>2D</m></bullet><bullet>[1] - <m>3D</m></bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of dimensions (and hence inputs and outputs).<br /><bullet>[0] - <m>2D</m></bullet><bullet>[1] - <m>3D</m></bullet>
       </description>
     </entry>
-    <entry name="/angles [instantiation enum]">
+    <entry name="/angles [enum]">
       <description>
-        Sets the units used for angles.<br /><bullet>[0] - <m>radians</m></bullet><bullet>[1] - <m>degrees</m></bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the units used for angles.<br /><bullet>[0] - <m>radians</m></bullet><bullet>[1] - <m>degrees</m></bullet>
       </description>
     </entry>
   </misc>
@@ -79,7 +79,7 @@
         Realtime flag
       </digest>
       <description>
-        Sets the realtime state for <o>fl.cartopol~</o>. When set to <m>0</m> <o>fl.cartopol~</o> can form part of a non-realtime network for processing in message threads, using <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+        Sets the realtime state for <o>fl.cartopol~</o>. When set to <m>0</m> <o>fl.cartopol~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -91,7 +91,7 @@
         Context ID
       </digest>
       <description>
-        Sets the context name for <o>fl.cartopol~</o>.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+        Sets the context name for <o>fl.cartopol~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -100,17 +100,17 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.complex.cos~" />
-    <seealso name="fl.complex.log10~" />
-    <seealso name="fl.complex.sinh~" />
     <seealso name="fl.complex.conj~" />
-    <seealso name="fl.complex.exp~" />
-    <seealso name="fl.complex.log~" />
     <seealso name="fl.complex.cosh~" />
-    <seealso name="fl.complex.tan~" />
+    <seealso name="fl.complex.cos~" />
+    <seealso name="fl.complex.exp~" />
+    <seealso name="fl.complex.log10~" />
+    <seealso name="fl.complex.log~" />
+    <seealso name="fl.complex.sinh~" />
     <seealso name="fl.complex.sin~" />
-    <seealso name="fl.complex.tanh~" />
     <seealso name="fl.complex.sqrt~" />
+    <seealso name="fl.complex.tanh~" />
+    <seealso name="fl.complex.tan~" />
     <seealso name="fl.poltocar~" />
     <seealso name="fl.spatial~" />
   </seealsolist>

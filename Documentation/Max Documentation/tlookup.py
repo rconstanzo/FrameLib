@@ -11,11 +11,11 @@ def main(docs: Documentation):
     """
 
     tutorial_index = (
-        docs.package / "FrameLib" / "docs" / "tutorials" / "framelib-tut" / "00_fl_index.maxtut.xml"
+        docs.package / "docs" / "tutorials" / "framelib-tut" / "00_fl_index.maxtut.xml"
     )
     docs.interfaces_dir.mkdir(exist_ok=True)
 
-    obj_lookup = docs.interfaces_dir / "FrameLib-obj-tlookup.json"
+    obj_lookup = docs.interfaces_dir / "framelib-obj-tlookup.json"
 
     worker = tParseAndBuild()
 

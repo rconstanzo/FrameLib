@@ -8,9 +8,9 @@
     Items for concatenatation are set as parameters and can be altered dynamically. Numeric inputs are indicated as in1 to inx (where x is the number of inputs created). Only a single number is read from each input, interpreted as an integer. Numbers can be optionally zero-padded. The number of items to concatenate can be set explicitly by parameter. Alternatively, it can be set implicitly by the item parameters present at instantiation.
   </description>
   <misc name="Parameters">
-    <entry name="/num_items [instantiation int]">
+    <entry name="/num_items [int]">
       <description>
-        Sets the number of items.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of items.
       </description>
     </entry>
     <entry name="/tag [string]">
@@ -18,9 +18,9 @@
         Sets the output tag.
       </description>
     </entry>
-    <entry name="/trigger_ins [instantiation variable length bool array]">
+    <entry name="/trigger_ins [variable length bool array]">
       <description>
-        Sets which inputs trigger output using an array of bools. By default all inputs trigger output.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets which inputs trigger output using an array of bools. By default all inputs trigger output.
       </description>
     </entry>
     <entry name="/padding [variable length int array]">
@@ -94,7 +94,7 @@
         Realtime flag
       </digest>
       <description>
-        Sets the realtime state for <o>fl.makestring~</o>. When set to <m>0</m> <o>fl.makestring~</o> can form part of a non-realtime network for processing in message threads, using <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+        Sets the realtime state for <o>fl.makestring~</o>. When set to <m>0</m> <o>fl.makestring~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -106,7 +106,7 @@
         Context ID
       </digest>
       <description>
-        Sets the context name for <o>fl.makestring~</o>.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+        Sets the context name for <o>fl.makestring~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -115,11 +115,11 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.tag~" />
-    <seealso name="fl.untag~" />
     <seealso name="fl.combinetags~" />
     <seealso name="fl.filtertags~" />
-    <seealso name="fl.looupstring~" />
+    <seealso name="fl.lookupstring~" />
+    <seealso name="fl.tag~" />
+    <seealso name="fl.untag~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

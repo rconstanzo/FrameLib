@@ -1,5 +1,6 @@
 import argparse
 import create_temp
+import validate_object_relationships
 import create_category_database
 import edit_xml
 import dlookup
@@ -10,7 +11,8 @@ import create_tutorial_coll
 import cleanup
 import template_help
 import merge_help
-import mismatch_template
+import fixed_help_tabs
+import create_max_db
 from framelib.utils import sign_off, space, hyp
 from framelib.classes import Documentation
 
@@ -22,7 +24,6 @@ def main():
     parser.add_argument("-c", "--clean", default=True, action='store_false', help="Toggle to switch off post-cleanup")
     parser.add_argument("-p", "--package", help="Provide a custom location for a package")
     args = parser.parse_args()
-
 
     if args.package:
         docs.set_package(args.package)
@@ -37,16 +38,21 @@ def main():
     # This produces the header file which Build_Max_Docs.cpp uses to know about FrameLib objects and types.
     # Also, this where a number of temporary directories are created
 
+    # Validates that the seealso contents exist and that each object has an entry
+    print("1. Validating object relationships")
+    validate_object_relationships.main(docs)
+    hyp()
+    
     # Creates a category database in .json format.
     # The JSON file is used by 2_edit_raw_XML.py to assign object categories to the xml files.
-    print("1. Building Category Database")
+    print("2. Building Category Database")
     create_category_database.main(docs)
     hyp()
 
     # The purpose of this script is to set the categories for the Raw XML files.
     # C++ doesnt know about the categories at XML creation.
     # Edited XML files are copied from /tmp/ to the refpages directory
-    print("2. Editing XML Files")
+    print("3. Editing XML Files")
     edit_xml.main(docs)
     hyp()
 
@@ -92,8 +98,13 @@ def main():
         # Merges the hard coded tabs with the templates
         # This creates the finished help file
         print("12. Adding mismatch and trigger_ins tabs")
-        mismatch_template.main(docs)
+        fixed_help_tabs.main(docs)
         hyp()
+
+    # Creates a database of files to exclude
+    print("10. Creating help file templates")
+    create_max_db.main(docs)
+    hyp()
 
     if args.clean:
         cleanup.main(docs)

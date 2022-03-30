@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as et
 from pathlib import Path
-from framelib.utils import write_json, strip_space, strip_extension
+from framelib.utils import read_json, write_json, strip_space, strip_extension
 from framelib.variables import this_script
 from shutil import copytree
 
@@ -17,7 +17,7 @@ class Documentation:
         self.repo_root = this_script.parents[3]
 
         # Import Max Paths
-        self.package = self.repo_root / "Packaging" / "Max"
+        self.package = self.repo_root / "Packaging" / "Max" / "FrameLib"
 
         # Temporary Directories
         self.temporary_dir = self.max_docs_dir / "__tmp__"
@@ -32,20 +32,46 @@ class Documentation:
 
         # Help Files
         self.help_dir = self.max_docs_dir / "help_files"
+        self.help_templates_dir = self.temporary_dir / "help_templates"
 
         # Manual XML
         self.manual_xml_dir = self.max_docs_dir / "refpages"
 
-    def set_package(self, location:str) -> None:
-        """Sets the location of the folder holding that is the parent of the package"""
-        self.package = Path(location)
-        self.set_max_paths()
+        # The Max Objects Source Files
+        self.source_path = self.repo_root / "FrameLib_Max_Objects"
+        self.source_files = [x for x in self.source_path.rglob("fl.*.cpp")]
+        
+        # Read Object Info
+        self.object_info = read_json(self.object_relationships_path)
+
+        # Objects
+        self.additional_valid_objects = [ "buffer~" ]
 
     def set_max_paths(self) -> None:
-        self.refpages_dir = self.package / "FrameLib" / "docs" / "refpages"
-        self.interfaces_dir = self.package / "FrameLib" / "interfaces"
+        self.refpages_dir = self.package / "docs" / "refpages"
+        self.interfaces_dir = self.package / "interfaces"
         self.refpages_dir.mkdir(exist_ok=True, parents=True)
         self.interfaces_dir.mkdir(exist_ok=True, parents=True)
+        
+    def refpage_name(self, obj_name: str) -> str:
+        """Returns the refpage name of an object"""
+        if obj_name in self.additional_valid_objects:
+            return obj_name
+        file_name = obj_name + ".maxref.xml"
+        ref_path = self.raw_xml_dir / file_name
+        if not ref_path.exists():
+            ref_path = self.manual_xml_dir / file_name
+        return et.parse(ref_path).getroot().get("name")
+    
+    def seealso_aliased(self, object_name: str) -> dict:
+        """Returns a seealso dict correctly aliased"""
+        seealso = self.object_info[object_name]["seealso"][:]
+    
+        aliased = [self.refpage_name(x) for x in seealso]
+        aliased.sort()
+        
+        return aliased
+    
 
 
 # A class to parse the XML files and build a JSON file from it #
@@ -72,7 +98,7 @@ class dParseAndBuild:
         self.root = self.tree.getroot()  # c74object
 
         # Find Information #
-        self.object_name = self.root.get("name")  # finds the name so you don't have to do regex
+        self.object_name = self.root.get("name")
 
         for child in self.root:
             if child.tag == "digest":
@@ -125,6 +151,7 @@ class qParseAndBuild:
         # Find Information
         self.category = self.root.get("category")
         self.object_name = self.root.get("name")
+        self.object_proper_name = strip_extension(x.stem, 1)  # get the object name (use the maxref name in case it is aliased)
 
         for child in self.root:
             if child.tag == "digest":
@@ -133,21 +160,18 @@ class qParseAndBuild:
         # #strips whitespace from things
         self.digest = strip_space(self.digest)
 
-    def extract_seealso(self, yaml):
+    def extract_seealso(self, docs):
         """
-        Extracts the see also contents from the master yaml file
+        Extracts the see also contents from the master json file
         """
-        try:
-            self.seealso = yaml[self.object_name]["seealso"]
-        except KeyError:
-            print(f"No seealso for {self.object_name}")
+        self.seealso = docs.seealso_aliased(self.object_proper_name)
 
-    def extract_keywords(self, yaml):
+    def extract_keywords(self, docs):
         """
-        Extracts the keywords contents from the master yaml file
+        Extracts the keywords contents from the master json file
         """
         try:
-            self.keywords = yaml[self.object_name]["keywords"]
+            self.keywords = docs.object_info[self.object_proper_name]["keywords"]
         except KeyError:
             print(f"No keywords for {self.object_name}")
 
@@ -218,7 +242,7 @@ class jParseAndBuild:
 
         # Find Information
         
-        self.object_name = self.root.get("name")  # get the object name
+        self.object_name = strip_extension(x.stem, 1)  # get the object name (use the maxref name in case it is aliased)
         param_idx = 1  # reset a variable to track the parameter number
         for child in self.root:  # iterate over the sections
             if child.tag == "misc":  # if the section is misc
@@ -263,6 +287,10 @@ class jParseAndBuild:
                                         else:
                                             blank_desc += "\n\n"
                                         firstBullet = True
+                                    elif item.tag == "h6":  # instantiation flag will be wrapped in a <h6>
+                                            blank_desc += "".join(item.itertext())
+                                            if item.tail.rstrip() != None:
+                                                blank_desc += "\n\n" + item.tail.rstrip()
 
                         blank_internal["description"] = blank_desc  # set the description
 

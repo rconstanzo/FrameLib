@@ -8,14 +8,14 @@
     The output is a single value. When the input frame is empty then the output is determined by the empty parameter.
   </description>
   <misc name="Parameters">
-    <entry name="/empty [instantiation enum]">
+    <entry name="/empty [enum]">
       <description>
-        Sets the output to use when an empty input frame is received:<br /><bullet>[0] - <m>empty</m> - output an empty frame.</bullet><bullet>[1] - <m>default</m> - output the default value (see the default parameter).</bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the output to use when an empty input frame is received:<br /><bullet>[0] - <m>empty</m> - output an empty frame.</bullet><bullet>[1] - <m>default</m> - output the default value (see the default parameter).</bullet>
       </description>
     </entry>
-    <entry name="/default [instantiation double]">
+    <entry name="/default [double]">
       <description>
-        Sets the default output value.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the default output value.
       </description>
     </entry>
   </misc>
@@ -79,7 +79,7 @@
         Realtime flag
       </digest>
       <description>
-        Sets the realtime state for <o>fl.framemin~</o>. When set to <m>0</m> <o>fl.framemin~</o> can form part of a non-realtime network for processing in message threads, using <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+        Sets the realtime state for <o>fl.framemin~</o>. When set to <m>0</m> <o>fl.framemin~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -91,7 +91,7 @@
         Context ID
       </digest>
       <description>
-        Sets the context name for <o>fl.framemin~</o>.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+        Sets the context name for <o>fl.framemin~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -100,37 +100,37 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.minpos~" />
-    <seealso name="fl.percentile~" />
-    <seealso name="fl.stddev~" />
-    <seealso name="fl.centroid~" />
     <seealso name="fl.accumpos~" />
-    <seealso name="fl.nonzero~" />
-    <seealso name="fl.maxpos~" />
-    <seealso name="fl.geomean~" />
-    <seealso name="fl.spread~" />
-    <seealso name="fl.framemax~" />
-    <seealso name="fl.kurtosis~" />
-    <seealso name="fl.sort~" />
-    <seealso name="fl.mean~" />
-    <seealso name="fl.join~" />
-    <seealso name="fl.shift~" />
-    <seealso name="fl.sum~" />
-    <seealso name="fl.subframe~" />
-    <seealso name="fl.nanfilter~" />
-    <seealso name="fl.reverse~" />
-    <seealso name="fl.length~" />
-    <seealso name="fl.peaks~" />
-    <seealso name="fl.pattern~" />
-    <seealso name="fl.product~" />
-    <seealso name="fl.skewness~" />
-    <seealso name="fl.crest~" />
-    <seealso name="fl.pad~" />
+    <seealso name="fl.centroid~" />
     <seealso name="fl.chop~" />
+    <seealso name="fl.crest~" />
     <seealso name="fl.flatness~" />
-    <seealso name="fl.rms~" />
-    <seealso name="fl.split~" />
+    <seealso name="fl.framemax~" />
+    <seealso name="fl.geomean~" />
+    <seealso name="fl.join~" />
+    <seealso name="fl.kurtosis~" />
+    <seealso name="fl.length~" />
+    <seealso name="fl.maxpos~" />
+    <seealso name="fl.mean~" />
     <seealso name="fl.medianfilter~" />
+    <seealso name="fl.minpos~" />
+    <seealso name="fl.nanfilter~" />
+    <seealso name="fl.nonzero~" />
+    <seealso name="fl.pad~" />
+    <seealso name="fl.pattern~" />
+    <seealso name="fl.peaks~" />
+    <seealso name="fl.percentile~" />
+    <seealso name="fl.product~" />
+    <seealso name="fl.reverse~" />
+    <seealso name="fl.rms~" />
+    <seealso name="fl.shift~" />
+    <seealso name="fl.skewness~" />
+    <seealso name="fl.sort~" />
+    <seealso name="fl.split~" />
+    <seealso name="fl.spread~" />
+    <seealso name="fl.stddev~" />
+    <seealso name="fl.subframe~" />
+    <seealso name="fl.sum~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

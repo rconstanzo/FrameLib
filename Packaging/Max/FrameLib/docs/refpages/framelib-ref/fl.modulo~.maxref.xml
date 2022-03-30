@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8' standalone='yes'?>
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
-<c74object name="fl.modulo~" module="FrameLib" category="FrameLib Binary">
+<c74object name="fl.%~" module="FrameLib" category="FrameLib Binary">
   <digest>
     Calculates the left input frame values modulo the right input frame values
   </digest>
@@ -8,19 +8,19 @@
     Calculation is performed on pairs of values in turn. The output is a frame at least as long as the smaller of the two inputs. If inputs mismatch in length the result depends on the mismatch parameter. Either or both inputs may be set to trigger output.
   </description>
   <misc name="Parameters">
-    <entry name="/mismatch [instantiation enum]">
+    <entry name="/mismatch [enum]">
       <description>
-        Sets the mode used when dealing with mismatched input lengths:<br /><bullet>[0] - <m>wrap</m> - the smaller input is read modulo against the larger input.</bullet><bullet>[1] - <m>shrink</m> - the output length is set to that of the smaller input.</bullet><bullet>[2] - <m>pad_in</m> - the smaller input is padded prior to calculation to match the larger input.</bullet><bullet>[3] - <m>pad_out</m> - the output is padded to match the length of the larger input.</bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the mode used when dealing with mismatched input lengths:<br /><bullet>[0] - <m>wrap</m> - the smaller input is read modulo against the larger input.</bullet><bullet>[1] - <m>shrink</m> - the output length is set to that of the smaller input.</bullet><bullet>[2] - <m>pad_in</m> - the smaller input is padded prior to calculation to match the larger input.</bullet><bullet>[3] - <m>pad_out</m> - the output is padded to match the length of the larger input.</bullet>
       </description>
     </entry>
-    <entry name="/trigger_ins [instantiation enum]">
+    <entry name="/trigger_ins [enum]">
       <description>
-        Sets which inputs trigger output.<br /><bullet>[0] - <m>both</m></bullet><bullet>[1] - <m>left</m></bullet><bullet>[2] - <m>right</m></bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets which inputs trigger output.<br /><bullet>[0] - <m>both</m></bullet><bullet>[1] - <m>left</m></bullet><bullet>[2] - <m>right</m></bullet>
       </description>
     </entry>
-    <entry name="/pad [instantiation double]">
+    <entry name="/pad [double]">
       <description>
-        Sets the value used for padding (for either pad_in or pad_out modes).
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the value used for padding (for either pad_in or pad_out modes).
       </description>
     </entry>
   </misc>
@@ -48,7 +48,7 @@
         Get Object Info
       </digest>
       <description>
-        Print info about <o>fl.modulo~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+        Print info about <o>fl.%~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">
@@ -76,7 +76,7 @@
         Realtime flag
       </digest>
       <description>
-        Sets the realtime state for <o>fl.modulo~</o>. When set to <m>0</m> <o>fl.modulo~</o> can form part of a non-realtime network for processing in message threads, using <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+        Sets the realtime state for <o>fl.%~</o>. When set to <m>0</m> <o>fl.%~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -88,7 +88,7 @@
         Context ID
       </digest>
       <description>
-        Sets the context name for <o>fl.modulo~</o>.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+        Sets the context name for <o>fl.%~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -97,27 +97,32 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.lessthan~" />
+    <seealso name="fl.!=~" />
+    <seealso name="fl.&amp;&amp;~" />
+    <seealso name="fl.*~" />
+    <seealso name="fl.+~" />
+    <seealso name="fl.-~" />
+    <seealso name="fl./~" />
+    <seealso name="fl.&lt;=~" />
+    <seealso name="fl.&lt;~" />
+    <seealso name="fl.==~" />
+    <seealso name="fl.&gt;=~" />
+    <seealso name="fl.&gt;~" />
     <seealso name="fl.atan2~" />
-    <seealso name="fl.minus~" />
-    <seealso name="fl.hypot~" />
-    <seealso name="fl.equals~" />
-    <seealso name="fl.times~" />
-    <seealso name="fl.pow~" />
-    <seealso name="fl.divide~" />
-    <seealso name="fl.max~" />
-    <seealso name="fl.notequals~" />
-    <seealso name="fl.greaterthan~" />
-    <seealso name="fl.and~" />
-    <seealso name="fl.min~" />
-    <seealso name="fl.lessthaneq~" />
-    <seealso name="fl.diff~" />
-    <seealso name="fl.plus~" />
-    <seealso name="fl.or~" />
     <seealso name="fl.copysign~" />
-    <seealso name="fl.greaterthaneq~" />
+    <seealso name="fl.diff~" />
+    <seealso name="fl.hypot~" />
+    <seealso name="fl.max~" />
+    <seealso name="fl.min~" />
+    <seealso name="fl.pow~" />
+    <seealso name="fl.||~" />
   </seealsolist>
   <misc name="Discussion">
+    <entry name="Aliases">
+      <description>
+        <o>fl.modulo~</o>
+      </description>
+    </entry>
     <entry name="Keywords">
       <description>binary ops, operators</description>
     </entry>
