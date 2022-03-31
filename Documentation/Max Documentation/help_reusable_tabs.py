@@ -5,12 +5,29 @@ from framelib.classes import Documentation
 from framelib.help import edit_help
 
 
-def append_tabs(patch, source):
+def append_tabs(patch, source, find_object, replace_object):
     """Take a string, append the tabs to the source"""
-    converted = json.loads(patch)
+    modified_patch = patch.replace(find_object, replace_object)
+    converted = json.loads(modified_patch)
     for tab in converted["patcher"]["boxes"]:
         source["patcher"]["boxes"].append(tab)
 
+def lookup_input_string(object) -> str:
+
+    dict = {    "fl.ramp~": "/scale normalised",
+                "fl.uniform~": "/value 0.657",
+                "fl.gaussian~": "/deviation 0.1",
+                "fl.makewindow~": "/window kaiser",
+                "fl.random~": ""     }
+                
+    return object + " " + dict[object]
+
+def fix_mapping(patch, name):
+    if name == "fl.and~" or name == "fl.or~":
+        return patch.replace("linear 0.2 0.8 0.2 0.8 1", "linear 0.5 0.8 0. 0.8 1")
+    if name == "fl.copysign~":
+        return patch.replace("linear 0.2 0.8 0.2 0.8 1", "linear 0.2 0.8 -0.8 0.8 1", 1)
+    return patch
 
 def main(docs: Documentation):
     mismatch_binary = open(docs.help_dir / "reusable_tabs" / "mismatch_binary_template.maxhelp", "r").read()
@@ -31,19 +48,22 @@ def main(docs: Documentation):
     for path in templates:
         template = read_json(path)
     
+        name = docs.refpage_name(path.stem)
+        
         if path.stem in ternary:
-            append_tabs(mismatch_ternary, template)
+            append_tabs(mismatch_ternary, template, "fl.fold~", name)
 
         if path.stem in binary:
-            append_tabs(trigger_ins, template)
-            append_tabs(mismatch_binary, template)
+            trigger_ins_fixed = fix_mapping(trigger_ins, path.stem)
+            append_tabs(trigger_ins_fixed, template, "fl.*~", name)
+            append_tabs(mismatch_binary, template, "fl.-~", name)
         
         if path.stem in complex_binary:
-            append_tabs(trigger_ins_complex, template)
-            append_tabs(mismatch_complex, template)
+            append_tabs(trigger_ins_complex, template, "fl.complex.*~", name)
+            append_tabs(mismatch_complex, template, "fl.complex.-~", name)
         
         if path.stem in generators:
-            append_tabs(in_mode, template)
+            append_tabs(in_mode, template, "fl.random~", lookup_input_string(name))
 
         write_json(path, template)
         

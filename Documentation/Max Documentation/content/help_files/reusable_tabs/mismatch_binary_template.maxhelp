@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 652.0, 787.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -88,12 +88,23 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-10",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 106.04998779296875, 702.0, 432.0, 21.0 ],
+									"text" : "Note that the padding value detaults to zero, but can be set by parameter."
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-5",
 									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 615.0, 45.0, 45.0 ]
+									"patching_rect" : [ 30.0, 690.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -103,31 +114,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.524993896484375, 496.0, 230.0, 21.0 ],
-									"text" : "The internal operation is a subtraction."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-37",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 139.0, 559.899993896484375, 53.04998779296875, 13.20001220703125 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-18",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 195.0, 555.0, 207.0, 21.0 ],
-									"text" : "Observe the changes in the output"
+									"patching_rect" : [ 245.0, 555.0, 134.0, 21.0 ],
+									"text" : "Look inside for details"
 								}
 
 							}
@@ -141,6 +129,7 @@
 									"enablevscroll" : 0,
 									"id" : "obj-1",
 									"lockeddragscroll" : 0,
+									"lockedsize" : 0,
 									"maxclass" : "bpatcher",
 									"numinlets" : 0,
 									"numoutlets" : 1,
@@ -150,8 +139,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 1,
-											"revision" : 8,
+											"minor" : 3,
+											"revision" : 0,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -325,8 +314,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"fontsize" : [ 12.059008 ],
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+													"fontsize" : [ 12.059008 ]
 												}
 ,
 												"parentstyle" : "",
@@ -344,20 +333,8 @@
  ]
 									}
 ,
-									"patching_rect" : [ 345.0, 240.0, 150.0, 195.0 ],
+									"patching_rect" : [ 360.0, 315.0, 150.0, 195.0 ],
 									"viewvisibility" : 1
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-33",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 555.0, 120.0, 23.0 ],
-									"text" : "-60. 29.9 -80."
 								}
 
 							}
@@ -368,7 +345,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 495.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 585.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -380,8 +357,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 180.0, 300.0, 117.0, 23.0 ],
-									"text" : "fl.register~ 100 0.1"
+									"patching_rect" : [ 195.0, 375.0, 114.0, 23.0 ],
+									"text" : "fl.register~ 10 -0.1"
 								}
 
 							}
@@ -392,8 +369,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 300.0, 124.0, 23.0 ],
-									"text" : "fl.register~ 40 30 20"
+									"patching_rect" : [ 30.0, 375.0, 157.0, 23.0 ],
+									"text" : "fl.register~ 10 3 -2 0 7 1.4"
 								}
 
 							}
@@ -408,8 +385,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 1,
-											"revision" : 8,
+											"minor" : 3,
+											"revision" : 0,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -450,7 +427,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 715.0, 132.0, 116.0, 22.0 ],
+													"patching_rect" : [ 714.0, 132.0, 116.0, 22.0 ],
 													"text" : "fl.frommax~ params"
 												}
 
@@ -464,7 +441,7 @@
 													"numinlets" : 0,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 715.0, 24.0, 30.0, 30.0 ]
+													"patching_rect" : [ 714.0, 24.0, 30.0, 30.0 ]
 												}
 
 											}
@@ -489,7 +466,7 @@
 													"numinlets" : 0,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 119.0, 24.0, 30.0, 30.0 ]
+													"patching_rect" : [ 152.0, 24.0, 30.0, 30.0 ]
 												}
 
 											}
@@ -513,7 +490,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 541.0, 132.0, 134.0, 22.0 ],
+													"patching_rect" : [ 541.0, 132.0, 167.0, 22.0 ],
 													"text" : "fl.-~ /mismatch pad_out"
 												}
 
@@ -525,7 +502,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 368.0, 132.0, 126.0, 22.0 ],
+													"patching_rect" : [ 368.0, 132.0, 159.0, 22.0 ],
 													"text" : "fl.-~ /mismatch pad_in"
 												}
 
@@ -549,7 +526,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 195.0, 132.0, 122.0, 22.0 ],
+													"patching_rect" : [ 195.0, 132.0, 155.0, 22.0 ],
 													"text" : "fl.-~ /mismatch shrink"
 												}
 
@@ -561,7 +538,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 22.0, 132.0, 116.0, 22.0 ],
+													"patching_rect" : [ 22.0, 132.0, 149.0, 22.0 ],
 													"text" : "fl.-~ /mismatch wrap"
 												}
 
@@ -622,7 +599,7 @@
 												"patchline" : 												{
 													"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 													"destination" : [ "obj-24", 1 ],
-													"midpoints" : [ 128.5, 92.5, 307.5, 92.5 ],
+													"midpoints" : [ 161.5, 92.5, 340.5, 92.5 ],
 													"order" : 3,
 													"source" : [ "obj-2", 0 ]
 												}
@@ -632,7 +609,7 @@
 												"patchline" : 												{
 													"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 													"destination" : [ "obj-26", 1 ],
-													"midpoints" : [ 128.5, 92.5, 484.5, 92.5 ],
+													"midpoints" : [ 161.5, 92.5, 517.5, 92.5 ],
 													"order" : 2,
 													"source" : [ "obj-2", 0 ]
 												}
@@ -642,7 +619,7 @@
 												"patchline" : 												{
 													"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 													"destination" : [ "obj-27", 1 ],
-													"midpoints" : [ 128.5, 92.5, 665.5, 92.5 ],
+													"midpoints" : [ 161.5, 92.5, 698.5, 92.5 ],
 													"order" : 1,
 													"source" : [ "obj-2", 0 ]
 												}
@@ -652,7 +629,7 @@
 												"patchline" : 												{
 													"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 													"destination" : [ "obj-6", 0 ],
-													"midpoints" : [ 128.5, 92.5, 724.5, 92.5 ],
+													"midpoints" : [ 161.5, 92.5, 723.5, 92.5 ],
 													"order" : 0,
 													"source" : [ "obj-2", 0 ]
 												}
@@ -703,7 +680,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 15.0, 450.0, 349.0, 23.0 ],
+									"patching_rect" : [ 30.0, 525.0, 349.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -719,12 +696,12 @@
 								"box" : 								{
 									"fontname" : "Arial",
 									"id" : "obj-2",
-									"linecount" : 9,
+									"linecount" : 13,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 90.0, 623.0, 137.0 ],
-									"text" : "FrameLib objects have a configurable logic for dealing with scenarios where there is a mismatch between the lengths of different inputs (or pairs of inputs for objects dealing with complex numbers). If an object needs to deal with this problem it will possess a /mismatch parameter.\n\nThere are a number of modes for dealing with mismatched frame sizes and not all objects have the same (this will depend on whether they represent a binary or ternary operator, or something else).\n\nBelow is a generic demonstration of the four modes offered on all binary operators for mismatched inputs and the effect this has on the output."
+									"patching_rect" : [ 15.0, 90.0, 623.0, 195.0 ],
+									"text" : "FrameLib binary operators have a configurable logic for dealing with scenarios where there is a mismatch between the lengths of different inputs. \n\nThis is done via the /mismatch parameter.\n\nThe available options are:\n\nwrap -  reads shorter imputs in a wrapped manner (the output is as long as the longest input)\nshrink - the output is as long as the shortest input and other values are discarded\npad_in - extends shorter inputs by padding them with the parameter padding value\npad_out - extends the output for missing values by padding it with the padding parameter value\n\nSee how these operate in practice for fl.-~ below:"
 								}
 
 							}
@@ -735,7 +712,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 240.0, 101.0, 23.0 ],
+									"patching_rect" : [ 30.0, 315.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 1024"
 								}
 
@@ -753,6 +730,41 @@
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 15.0, 15.0, 435.0, 60.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-7",
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 396.0, 648.899993896484375, 53.04998779296875, 13.20001220703125 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-8",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 453.04998779296875, 645.0, 150.0, 21.0 ],
+									"text" : "Observe output changes"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"dontreplace" : 1,
+									"id" : "obj-9",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 30.0, 645.0, 360.0, 23.0 ]
 								}
 
 							}
@@ -787,8 +799,8 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-33", 1 ],
-									"midpoints" : [ 24.5, 536.0, 125.5, 536.0 ],
+									"destination" : [ "obj-9", 1 ],
+									"midpoints" : [ 39.5, 626.0, 380.5, 626.0 ],
 									"source" : [ "obj-31", 0 ]
 								}
 
@@ -804,7 +816,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-30", 0 ],
-									"midpoints" : [ 24.5, 287.0, 189.5, 287.0 ],
+									"midpoints" : [ 39.5, 362.0, 204.5, 362.0 ],
 									"order" : 0,
 									"source" : [ "obj-4", 0 ]
 								}
@@ -823,8 +835,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -867,15 +879,15 @@
 		}
 ,
 		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../Current Test Version/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
+				"name" : "fl.frommax~.mxo",
+				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.interval~.mxo",
@@ -886,15 +898,11 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.select~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "fl.register~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.select~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
