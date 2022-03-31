@@ -58,7 +58,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
+						"rect" : [ 34.0, 113.0, 768.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -150,46 +150,50 @@
 							}
 , 							{
 								"box" : 								{
+									"fontsize" : 13.0,
 									"id" : "obj-21",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 204.0, 437.5, 418.0, 47.0 ],
+									"patching_rect" : [ 204.0, 437.5, 436.0, 50.0 ],
 									"text" : "fl.ramp~ takes the scalar frame from fl.map~, but it doesn't care what the contents of the frame are and interprets it as a trigger frame. Another option would be to use the output of fl.tag~ as a trigger frame too."
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"fontsize" : 13.0,
 									"id" : "obj-20",
-									"linecount" : 2,
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 263.0, 369.5, 415.0, 33.0 ],
+									"patching_rect" : [ 263.0, 369.5, 428.0, 50.0 ],
 									"text" : "Take the value from fl.map~ (some number between 1 and 15) and create a 'tagged' frame which will modify the length parameter of fl.ramp~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"fontsize" : 13.0,
 									"id" : "obj-19",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 315.0, 150.0, 20.0 ],
+									"patching_rect" : [ 180.0, 315.0, 163.0, 21.0 ],
 									"text" : "Mapped 0 -> 1 to 1 -> 15"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"fontsize" : 13.0,
 									"id" : "obj-18",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 123.0, 270.0, 218.0, 20.0 ],
+									"patching_rect" : [ 123.0, 270.0, 237.0, 21.0 ],
 									"text" : "A single value (scalar) from fl.random~"
 								}
 
@@ -262,11 +266,12 @@
 							}
 , 							{
 								"box" : 								{
+									"fontsize" : 13.0,
 									"id" : "obj-7",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 161.0, 225.0, 345.0, 20.0 ],
+									"patching_rect" : [ 161.0, 225.0, 374.0, 21.0 ],
 									"text" : "Zero length frame (trigger frame) from fl.interval~ (a scheduler)"
 								}
 
@@ -1064,6 +1069,19 @@
 						"title" : "Parameters and Tagging",
 						"boxes" : [ 							{
 								"box" : 								{
+									"fontsize" : 13.0,
+									"id" : "obj-16",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 225.0, 532.5, 450.0, 36.0 ],
+									"text" : "N.B. - For dynamically changing parameters set by strings (strings / enums) fl.lookupstring~ and fl.makestring~ are essential objects to learn!"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"arrows" : 1,
 									"border" : 4.0,
 									"id" : "obj-13",
@@ -1162,7 +1180,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 15.0, 525.0, 158.0, 51.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 11
+									"size" : 7
 								}
 
 							}
@@ -3027,7 +3045,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 768.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3352,7 +3370,7 @@
 									"maxclass" : "bpatcher",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"offset" : [ -540.0, -450.0 ],
+									"offset" : [ 0.0, 0.0 ],
 									"patcher" : 									{
 										"fileversion" : 1,
 										"appversion" : 										{
@@ -4417,12 +4435,12 @@
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 12.0,
+									"fontsize" : 13.0,
 									"id" : "obj-20",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 96.25, 143.5, 322.0, 20.0 ],
+									"patching_rect" : [ 96.25, 143.5, 348.0, 21.0 ],
 									"text" : "Schedules one frame at the start of each Max audio vector."
 								}
 
@@ -4443,48 +4461,48 @@
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 12.0,
+									"fontsize" : 13.0,
 									"id" : "obj-40",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 75.0, 256.0, 293.0, 20.0 ],
+									"patching_rect" : [ 75.0, 256.0, 317.0, 21.0 ],
 									"text" : "Schedules trigger frames in the future at a given time."
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 12.0,
+									"fontsize" : 13.0,
 									"id" : "obj-38",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 116.25, 218.5, 270.0, 20.0 ],
+									"patching_rect" : [ 116.25, 218.5, 292.0, 21.0 ],
 									"text" : "Turns non-zero MSP samples into trigger frames."
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 12.0,
+									"fontsize" : 13.0,
 									"id" : "obj-37",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 75.0, 181.0, 252.0, 20.0 ],
+									"patching_rect" : [ 75.0, 181.0, 272.0, 21.0 ],
 									"text" : "Outputs a trigger frame when audio is started."
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 12.0,
+									"fontsize" : 13.0,
 									"id" : "obj-36",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 87.875, 106.0, 231.0, 20.0 ],
+									"patching_rect" : [ 87.875, 106.0, 249.0, 21.0 ],
 									"text" : "Outputs trigger frames at a repetitive rate."
 								}
 
