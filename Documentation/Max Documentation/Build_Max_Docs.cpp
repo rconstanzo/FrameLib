@@ -289,7 +289,7 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
         {
             if (bulletCount)
                 endBullet();
-            info.insert(pos, "<br />");
+            info.insert(pos, "<p />");
             break;
         }
         
@@ -326,7 +326,7 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
                     replaceLineEnd(".");
                 endBullet();
                 if (multiLine && !finalNote)
-                    insertString("<br />");
+                    insertString("<p />");
                 newItem = true;
             }
             else
@@ -349,7 +349,7 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
         {
             // If there's no list in the info string then insert it here
             
-            info += "<br />" ; // put a break big break between description and enum options
+            info += "<p />" ; // put a break big break between description and enum options
 
             for (long i = 0; i <= params->getMax(idx); i++)
                 info += "<bullet>[" + std::to_string(i) + "]" + " - <m>" + params->getItemString(idx, i) + "</m></bullet>";
@@ -363,7 +363,19 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
     
     // Replace any colons
     
-    findReplace(info, ": ", ":<br />");
+    findReplace(info, ": ", ":<p />");
+    
+    // Finally, denote the default
+    
+    auto defaultString = params->getDefaultString(idx);
+    
+    if (defaultString.length())
+    {
+        if (isEnum)
+            info += "<p /><i>(default: <m>" + defaultString + "</m>)</i>";
+        else
+            info += "<p /><i>(default: " + defaultString + ")</i>";
+    }
     
     return info;
 }
@@ -509,6 +521,15 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
                 file << tab1 + "</objarglist>\n\n";
             else
                 file << tab1 + "<objarglist />\n\n";
+        
+            for (unsigned long i = 0; params && i < params->size(); i++)
+
+            // Check object arguments
+                
+            for (unsigned long i = 0; params && i < params->size(); i++)
+                if (params->getArgumentIdx(i) > static_cast<long>(idx))
+                    throw std::runtime_error("n argument " + std::to_string(idx) + " for " + object + " but " + std::to_string(params->getArgumentIdx(i)));
+            
             return false;
         }
         
@@ -527,7 +548,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         std::string name = getParamName(params, paramIdx);
         std::string rawDescription = processParamInfo(object, params, paramIdx);
         std::string digest = rawDescription.substr(0, rawDescription.find_first_of(".:"));
-        std::string description = "This argument sets the " + name + " parameter:<br /><br />" + rawDescription;
+        std::string description = "This argument sets the " + name + " parameter:<p /><p />" + rawDescription;
         
         if (detectIndexedParam(params, paramIdx))
             description = "Arguments set parameters " + name + ":<br /><br />" + rawDescription;
@@ -547,7 +568,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     auto writeArgumentsAllInputs = [&]()
     {
         std::string digest("The input vector to use for any disconnected inputs");
-        std::string description("Values typed as arguments will be used as a vector for any inputs that are not connected. Either single values or multi-valued vectors can be entered. The behaviour is similar to that for arguments to standard objects such as +~, *~ or zl.reg.");
+        std::string description("Values typed as arguments will be used as a vector for any inputs that are not connected. Either single values or multi-valued vectors can be entered. The behaviour is similar to that for arguments to standard objects such as <o>+~</o>, or <o>*~</o>.");
         
         file << tab1 + "<objarglist>\n";
         file << tab2 + "<objarg name='default-input' optional='1' type='list'>\n";

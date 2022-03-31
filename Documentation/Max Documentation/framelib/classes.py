@@ -31,11 +31,11 @@ class Documentation:
         self.set_max_paths()
 
         # Help Files
-        self.help_dir = self.max_docs_dir / "help_files"
+        self.help_dir = self.max_docs_dir / "content" / "help_files"
         self.help_templates_dir = self.temporary_dir / "help_templates"
 
         # Manual XML
-        self.manual_xml_dir = self.max_docs_dir / "refpages"
+        self.manual_xml_dir = self.max_docs_dir / "content" / "refpages"
 
         # The Max Objects Source Files
         self.source_path = self.repo_root / "FrameLib_Max_Objects"
@@ -269,7 +269,7 @@ class jParseAndBuild:
                                         # Deal with breaks in bullets
                                         
                                         for nested in item:
-                                            if nested.tag == "br":
+                                            if nested.tag == "br" or nested.tag == "p":
                                                 nested.text = "\n\n    "
                                         if firstBullet:
                                             text = "".join(item.itertext());
@@ -281,7 +281,7 @@ class jParseAndBuild:
                                     elif item.tag == "o":  # strip object tabs
                                         blank_desc += item.text
                                         blank_desc += item.tail.rstrip()
-                                    elif item.tag == "br":  # add line breaks
+                                    elif item.tag == "br" or item.tag == "p":  # add line breaks
                                         if item.tail != None:
                                             blank_desc += "\n\n" + item.tail.rstrip()
                                         else:
@@ -291,6 +291,10 @@ class jParseAndBuild:
                                             blank_desc += "".join(item.itertext())
                                             if item.tail.rstrip() != None:
                                                 blank_desc += "\n\n" + item.tail.rstrip()
+                                    elif item.tag == "i":  # default will be wrapped in a <i>
+                                            blank_desc += "".join(item.itertext())
+                                            if item.tail.rstrip() != None:
+                                                blank_desc += item.tail.rstrip()
 
                         blank_internal["description"] = blank_desc  # set the description
 
