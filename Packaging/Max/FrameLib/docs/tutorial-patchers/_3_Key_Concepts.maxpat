@@ -2838,8 +2838,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 630.0, 38.0 ],
-									"text" : "Like all Max objects there are help files that can be accessed for reference. You can also send FrameLib objects the info message which post requested information about the object to the max console. "
+									"patching_rect" : [ 15.0, 53.0, 660.0, 38.0 ],
+									"text" : "Like all Max objects there are help files that can be accessed for reference (as well as the reference). You can also send FrameLib objects the info message which post requested information about the object to the max console. "
 								}
 
 							}
@@ -3027,7 +3027,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
+						"rect" : [ 34.0, 113.0, 768.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3060,79 +3060,27 @@
 						"boxes" : [ 							{
 								"box" : 								{
 									"fontsize" : 13.0,
-									"id" : "obj-7",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 338.0, 361.0, 30.0, 21.0 ],
-									"text" : "==",
-									"textjustification" : 1
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontsize" : 13.0,
-									"id" : "obj-4",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 369.0, 360.0, 268.0, 23.0 ],
-									"text" : "fl.random~ /units samples /mode 0 /length 10"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontsize" : 13.0,
 									"id" : "obj-13",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 360.0, 322.0, 23.0 ],
+									"patching_rect" : [ 15.0, 345.0, 322.0, 23.0 ],
 									"text" : "fl.random~ /mode requested /length 10 /units samples"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Arial",
+									"fontname" : "Lato Regular",
 									"fontsize" : 13.0,
 									"id" : "obj-12",
-									"linecount" : 7,
+									"linecount" : 6,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 240.0, 735.0, 108.0 ],
-									"text" : "2. /parameter <value>\n\nParameters can also be addressed by prefixing a forward slash (/) to the name. Again, let's configure the same example from above in this style. Note, the /parameter syntax can be in any order.\n\nIf the parameter you are addressing is an enumerated parameter, such as the fl.random~ /mode, this can be set with the numerical value of the selection counting from 0."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontsize" : 13.0,
-									"id" : "obj-11",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 222.0, 196.0, 30.0, 21.0 ],
-									"text" : "==",
-									"textjustification" : 1
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontsize" : 13.0,
-									"id" : "obj-9",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 254.0, 195.0, 113.0, 23.0 ],
-									"text" : "fl.random~ 0 10 0"
+									"patching_rect" : [ 15.0, 225.0, 731.0, 100.0 ],
+									"text" : "2. /parameter <value>\n\nParameters can also be addressed by prefixing a forward slash (/) to the name. Again, let's configure the same example from above in this style. Note, the /parameter syntax can be in any order. This is similar to the Max attribute system in which attributes can be set using the at character (@). However, unlike attributes, FrameLib parameters cannot be set directly by Max messages (more on dynamically setting parameters later)."
 								}
 
 							}
@@ -3144,22 +3092,22 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 195.0, 205.0, 23.0 ],
+									"patching_rect" : [ 15.0, 180.0, 205.0, 23.0 ],
 									"text" : "fl.random~ requested 10 samples"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Arial",
+									"fontname" : "Lato Regular",
 									"fontsize" : 13.0,
 									"id" : "obj-18",
-									"linecount" : 8,
+									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 54.0, 735.0, 123.0 ],
-									"text" : "There are two ways to set parameters with FrameLib objects. Each has its benefit, so it is worth becoming familiar with how each method works.\n\n1. Positional arguments\n\nfl.random~ has three parameters: Mode, Length and Units. We can address each one by its precedence. Parameters with enumerated options can also have the options addressed with numbers counting from 0. The example below demonstrates two ways of initialising the three parameters of fl.random~ in a Max style."
+									"patching_rect" : [ 15.0, 54.0, 738.0, 116.0 ],
+									"text" : "There are two ways to set parameters when you create FrameLib objects. Each has its benefits, so it is worth becoming familiar with how each method works.\n\n1. Positional arguments\n\nfl.random~ has three parameters: Mode, Length and Units. We can address each one by its precedence by setting them with arguments as per any Max object. The autocomplete system helps remind us of the order of arguments and their detaisl."
 								}
 
 							}
@@ -3404,7 +3352,7 @@
 									"maxclass" : "bpatcher",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"offset" : [ 0.0, 0.0 ],
+									"offset" : [ -540.0, -450.0 ],
 									"patcher" : 									{
 										"fileversion" : 1,
 										"appversion" : 										{
@@ -4455,25 +4403,26 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Arial",
+									"fontname" : "Lato Regular",
+									"fontsize" : 13.0,
 									"id" : "obj-26",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 60.0, 576.0, 33.0 ],
+									"patching_rect" : [ 15.0, 60.0, 522.0, 38.0 ],
 									"text" : "There are several schedulers in FrameLib that are available to you. Each scheduler works differently, but always deals with creating trigger frames at a particular point in time."
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-20",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 95.0, 142.5, 348.0, 21.0 ],
+									"patching_rect" : [ 96.25, 143.5, 322.0, 20.0 ],
 									"text" : "Schedules one frame at the start of each Max audio vector."
 								}
 
@@ -4494,48 +4443,48 @@
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-40",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 73.75, 255.0, 317.0, 21.0 ],
+									"patching_rect" : [ 75.0, 256.0, 293.0, 20.0 ],
 									"text" : "Schedules trigger frames in the future at a given time."
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-38",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 115.0, 217.5, 292.0, 21.0 ],
+									"patching_rect" : [ 116.25, 218.5, 270.0, 20.0 ],
 									"text" : "Turns non-zero MSP samples into trigger frames."
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-37",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 73.75, 180.0, 272.0, 21.0 ],
+									"patching_rect" : [ 75.0, 181.0, 252.0, 20.0 ],
 									"text" : "Outputs a trigger frame when audio is started."
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-36",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 86.625, 105.0, 249.0, 21.0 ],
+									"patching_rect" : [ 87.875, 106.0, 231.0, 20.0 ],
 									"text" : "Outputs trigger frames at a repetitive rate."
 								}
 
@@ -4758,7 +4707,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 768.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
