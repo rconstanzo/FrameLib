@@ -123,7 +123,7 @@
                                         15.0,
                                         15.0,
                                         575.0,
-                                        150.0
+                                        95
                                     ]
                                 }
                             },
@@ -147,9 +147,9 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        167.0,
+                                        127,
                                         575.0,
-                                        289.0
+                                        329.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
@@ -432,7 +432,8 @@
                                         285.0,
                                         90.0,
                                         23.0
-                                    ]
+                                    ],
+                                    "text": "foo 0.985348"
                                 }
                             },
                             {
@@ -790,8 +791,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            113.0,
+                            0.0,
+                            26.0,
                             605.0,
                             471.0
                         ],
@@ -840,7 +841,7 @@
                                         352.0,
                                         36.0
                                     ],
-                                    "text": "fl.tomax can unpack a multi-stream output and deliver each stream to its own outlet automatically"
+                                    "text": "fl.tomax can unpack a multi-stream output and deliver each stream to its own outlet "
                                 }
                             },
                             {
@@ -875,11 +876,11 @@
                                         160.0,
                                         60.0
                                     ],
-                                    "size": 1024,
+                                    "size": 512,
                                     "slidercolor": [
                                         1.0,
-                                        1.0,
-                                        1.0,
+                                        0.752941176470588,
+                                        0.992156862745098,
                                         1.0
                                     ]
                                 }
@@ -901,11 +902,11 @@
                                         160.0,
                                         60.0
                                     ],
-                                    "size": 1024,
+                                    "size": 512,
                                     "slidercolor": [
                                         1.0,
-                                        1.0,
-                                        1.0,
+                                        0.752941176470588,
+                                        0.992156862745098,
                                         1.0
                                     ]
                                 }
@@ -973,10 +974,10 @@
                                     "patching_rect": [
                                         45.0,
                                         90.0,
-                                        75.0,
+                                        142.0,
                                         23.0
                                     ],
-                                    "text": "fl.perblock~"
+                                    "text": "fl.interval~ 0.1 seconds"
                                 }
                             },
                             {
@@ -991,10 +992,10 @@
                                     "patching_rect": [
                                         45.0,
                                         135.0,
-                                        164.0,
+                                        157.0,
                                         23.0
                                     ],
-                                    "text": "fl.random~ =3 /length 1024"
+                                    "text": "fl.random~ =3 /length 512"
                                 }
                             },
                             {
@@ -1040,11 +1041,11 @@
                                         160.0,
                                         58.0
                                     ],
-                                    "size": 1024,
+                                    "size": 512,
                                     "slidercolor": [
                                         1.0,
-                                        1.0,
-                                        1.0,
+                                        0.752941176470588,
+                                        0.992156862745098,
                                         1.0
                                     ]
                                 }
@@ -1313,8 +1314,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
+                            34.0,
+                            113.0,
                             605.0,
                             471.0
                         ],
@@ -1414,7 +1415,7 @@
                                         98.0,
                                         23.0
                                     ],
-                                    "text": "fl.onepole~ 100"
+                                    "text": "fl.onepole~ 300"
                                 }
                             },
                             {
@@ -1498,8 +1499,8 @@
                                     "size": 1024,
                                     "slidercolor": [
                                         1.0,
-                                        1.0,
-                                        1.0,
+                                        0.752941176470588,
+                                        0.992156862745098,
                                         1.0
                                     ]
                                 }
