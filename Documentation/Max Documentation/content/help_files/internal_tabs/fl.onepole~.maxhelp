@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 676.0, 718.0 ],
+						"rect" : [ 34.0, 113.0, 676.0, 718.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -431,7 +431,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 195.0, 651.5, 330.0, 36.0 ],
+									"patching_rect" : [ 227.0, 651.5, 330.0, 36.0 ],
 									"text" : "In mult-output mode filters provides an output per filter mode, and these can be then mixed or combined later. ",
 									"textjustification" : 1
 								}
@@ -1239,7 +1239,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 676.0, 718.0 ],
+						"rect" : [ 0.0, 26.0, 676.0, 718.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,

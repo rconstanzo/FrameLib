@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            662.0,
-            787.0
+            682.0,
+            744.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            662.0,
-                            761.0
+                            682.0,
+                            718.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -108,7 +108,10 @@
                                     "filename": "fl.helpdetails.js",
                                     "id": "obj-4",
                                     "ignoreclick": 1,
-                                    "jsarguments": "fl.onepolezero~",
+                                    "jsarguments": [
+                                        "fl.onepolezero~",
+                                        112
+                                    ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -119,8 +122,8 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        630.0,
-                                        150.0
+                                        652.0,
+                                        185
                                     ]
                                 }
                             },
@@ -144,11 +147,14 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        167.0,
-                                        630.0,
-                                        565.0
+                                        217,
+                                        652.0,
+                                        486.0
                                     ],
-                                    "viewvisibility": 1
+                                    "viewvisibility": 1,
+                                    "args": [
+                                        652.0
+                                    ]
                                 }
                             }
                         ],
@@ -186,8 +192,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
+                            34.0,
+                            113.0,
                             682.0,
                             718.0
                         ],
@@ -240,7 +246,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        652.0,
                                         75.0
                                     ]
                                 }
@@ -665,7 +671,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        195.0,
+                                        219.5,
                                         651.5,
                                         345.0,
                                         36.0
@@ -709,13 +715,6 @@
                                         92.0,
                                         48.0,
                                         152.0
-                                    ],
-                                    "presentation": 1,
-                                    "presentation_rect": [
-                                        10.0,
-                                        11.0,
-                                        48.0,
-                                        166.0
                                     ],
                                     "saved_attribute_attributes": {
                                         "valueof": {
@@ -1150,7 +1149,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        652.0,
                                         75.0
                                     ]
                                 }
@@ -1966,8 +1965,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            113.0,
+                            0.0,
+                            26.0,
                             682.0,
                             718.0
                         ],
@@ -2618,7 +2617,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        652.0,
                                         75.0
                                     ]
                                 }
